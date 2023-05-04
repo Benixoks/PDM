@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_app/pages/registerPage.dart';
-import 'package:my_app/pages/main_page.dart';
+import 'package:my_app/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -169,12 +169,12 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             // if (_formKey.currentState!.validate()) {
                             //   logar();
-                            //   Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) => HomePage(),
-                            //     ),
-                            //   );
+                               Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                 ),
+                               );
                             // }
                           },
                           child: Text('Entrar'),
