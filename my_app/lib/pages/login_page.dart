@@ -56,13 +56,13 @@ class _LoginPageState extends State<LoginPage> {
                       // Bem Vindo!
 
                       Text(
-                        'Olá Torcedor.',
+                        'Olá, Torcedor!',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
                         ),
                       ),
-                      Text(
+                      Text( 
                         'Seja Bem Vindo ao ClubFLA!',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
