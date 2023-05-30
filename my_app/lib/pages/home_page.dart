@@ -17,12 +17,12 @@ class _HomePageState extends State<HomePage> {
     'R\$269,90',
   ];
   List<String> valuesImg = [
-    'images/camisa1.jpg',
-    'images/camisa2.jpg',
-    'images/camisa3.jpg',
-    'images/camisa4.jpg',
-    'images/camisa5.webp',
-    'images/camisa6.webp'
+    'lib/assets/images/camisa1.jpg',
+    'lib/assets/images/camisa2.jpg',
+    'lib/assets/images/camisa3.jpg',
+    'lib/assets/images/camisa4.jpg',
+    'lib/assets/images/camisa5.webp',
+    'lib/assets/images/camisa6.webp'
   ];
 
   final _homeController = ScrollController();
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                   )),
                 ),
                 // Card(
-                  
+
                 //   elevation: 10,
                 //   child: Row(
                 //       mainAxisAlignment: MainAxisAlignment.center,
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
               ],
             );
           },
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
         ),
@@ -113,9 +113,9 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings),label: 'Configurações'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Configurações'),
           BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Sair'),
-          
         ],
         selectedItemColor: Colors.greenAccent,
         onTap: (int index) {},
