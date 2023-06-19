@@ -1,4 +1,3 @@
-import 'package:http/retry.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String _dataNasc = '';
   String _cpf = '';
   String _senha = '';
-  String _confirmaSenha = '';
+  final String _confirmaSenha = '';
   bool mostraSenha = false;
   bool aceitaTermo = false;
   bool validate = false;
@@ -32,6 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _senhaController = TextEditingController();
   final _confirmaSenhaController = TextEditingController();
 
+  @override
   void dispose() {
     _nomeController.dispose();
     _emailController.dispose();
@@ -93,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),                    
+                              borderSide: const BorderSide(color: Colors.white),                    
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
@@ -101,13 +101,13 @@ class _RegisterPageState extends State<RegisterPage> {
                             labelStyle: const TextStyle(color: Colors.white),
                             labelText: "Nome Completo",
                             
-                            icon: Icon(Icons.person),
+                            icon: const Icon(Icons.person),
                             iconColor: Colors.greenAccent,
                           ),
-                          validator: (_nome) {
-                            if (_nome == null || _nome.isEmpty) {
+                          validator: (nome) {
+                            if (nome == null || nome.isEmpty) {
                               return '* Este campo deve ser preenchido!';
-                            } else if (_nome.length < 3) {
+                            } else if (nome.length < 3) {
                               return 'Seu nome deve conter mais de 2 caracteres!';
                             }
                             return null;
@@ -126,10 +126,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: const TextStyle(color: Colors.white),
                           cursorColor: Colors.white,
                           controller: _emailController,
-                          validator: (_email) {
-                            if (_email == null || _email.isEmpty) {
+                          validator: (email) {
+                            if (email == null || email.isEmpty) {
                               return '* Este campo deve ser preenchido!';
-                            } else if (_email.contains('@')) {
+                            } else if (email.contains('@')) {
                               return null;
                             } else {
                               return 'E-mail inválido!';
@@ -140,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Colors.white),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
@@ -149,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             labelText: "E-mail",
                             hintText: 'exemplo123@gmail.com',
                             hintStyle: const TextStyle(color: Colors.white),
-                            icon: Icon(Icons.mail),
+                            icon: const Icon(Icons.mail),
                             iconColor: Colors.greenAccent,
                           ),
                           onChanged: (text) {
@@ -170,8 +170,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: const TextStyle(color: Colors.white),
                           cursorColor: Colors.white,
                           controller: _celController,
-                          validator: (_celular) {
-                            if (_celular == null || _celular.isEmpty) {
+                          validator: (celular) {
+                            if (celular == null || celular.isEmpty) {
                               return '* Este campo deve ser preenchido!';
                             }
                             return null;
@@ -197,7 +197,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             prefixStyle: const TextStyle(color: Colors.greenAccent),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Colors.white),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
@@ -206,7 +206,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             labelText: "Celular",
                             hintText: '(DDD) 0 0000-0000',
                             hintStyle: const TextStyle(color: Colors.white),
-                            icon: Icon(Icons.phone),
+                            icon: const Icon(Icons.phone),
                             iconColor: Colors.greenAccent,
                           ),
                           onChanged: (text) {
@@ -222,8 +222,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: const TextStyle(color: Colors.white),
                           cursorColor: Colors.white,
                           controller: _dataNascController,
-                          validator: (_dataNasc) {
-                            if (_dataNasc == null || _dataNasc.isEmpty) {
+                          validator: (dataNasc) {
+                            if (dataNasc == null || dataNasc.isEmpty) {
                               return '* Este campo deve ser preenchido!';
                             }
                             return null;
@@ -240,7 +240,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Colors.white),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
@@ -248,8 +248,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             labelStyle: const TextStyle(color: Colors.white),
                             labelText: "Data de Nascimento",
                             hintText: 'dd/mm/aaaa',
-                            hintStyle: TextStyle(color: Colors.white),
-                            icon: Icon(Icons.person),
+                            hintStyle: const TextStyle(color: Colors.white),
+                            icon: const Icon(Icons.person),
                             iconColor: Colors.greenAccent,
                           ),
                           onChanged: (text) {
@@ -265,8 +265,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: const TextStyle(color: Colors.white),
                           cursorColor: Colors.white,
                           controller: _cpfController,
-                          validator: (_cpf) {
-                            if (_cpf == null || _cpf.isEmpty) {
+                          validator: (cpf) {
+                            if (cpf == null || cpf.isEmpty) {
                               return '* Este campo deve ser preenchido!';
                             }
                             return null;
@@ -283,14 +283,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ],
                           decoration: InputDecoration(
-                            icon: Icon(Icons.person),
+                            icon: const Icon(Icons.person),
                             iconColor: Colors.greenAccent,
                             labelText: 'CPF',
                             hintText: '000.000.000-00',
                             hintStyle: const TextStyle(color: Colors.white),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Colors.white),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
@@ -310,26 +310,27 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: const TextStyle(color: Colors.white),
                           cursorColor: Colors.white,
                           controller: _senhaController,
-                          validator: (_senha) {
-                            if (_senha == null || _senha.isEmpty) {
+                          validator: (senha) {
+                            if (senha == null || senha.isEmpty) {
                               return '* Este campo é obrigatório!';
-                            } else if (_senha.length < 6) {
+                            } else if (senha.length < 6) {
                               return '* Sua senha deve conter pelo menos 6 dígitos!';
                             }
+                            return null;
                           },
                           autofocus: true,
                           obscureText: !mostraSenha,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Colors.white),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.greenAccent)),
                             labelStyle: const TextStyle(color: Colors.white),
                             labelText: "Senha",
-                            icon: Icon(Icons.key),
+                            icon: const Icon(Icons.key),
                             iconColor: Colors.greenAccent,
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -364,9 +365,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: const TextStyle(color: Colors.white),
                           cursorColor: Colors.white,
                           controller: _confirmaSenhaController,
-                          validator: (_confirmaSenha) {
-                            if (_confirmaSenha == null ||
-                                _confirmaSenha.isEmpty) {
+                          validator: (confirmaSenha) {
+                            if (confirmaSenha == null ||
+                                confirmaSenha.isEmpty) {
                               return '* Este campo deve ser preenchido!';
                             }
                             return null;
@@ -376,13 +377,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Colors.white),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.greenAccent)),
                             labelStyle: const TextStyle(color: Colors.white),
-                            icon: Icon(Icons.key),
+                            icon: const Icon(Icons.key),
                             iconColor: Colors.greenAccent,
                             labelText: "Confirme sua Senha",
                           ),
@@ -433,7 +434,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           print('CPF $_cpf');
                           print('Senha $_senha');
                           if (_formKey.currentState!.validate()) {
-                            Text('Cadastro feito com sucesso!');
+                            const Text('Cadastro feito com sucesso!');
                             Navigator.pop(context);
                           } else {
                             print(

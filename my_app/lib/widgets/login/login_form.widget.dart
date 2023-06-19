@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:my_app/widgets/login/login_button.widget.dart';
 import 'package:my_app/common/validations.dart' as validations;
 
@@ -15,7 +13,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool mostraSenha = false;
-  String _email = '';
+  final String _email = '';
   String _senha = '';
 
   final _emailController = TextEditingController();
