@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
+import 'package:my_app/pages/login_page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}): super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -78,11 +79,48 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  Widget _buildScreen(int index){
+      switch(index){
+        case 0: 
+          return Home(itens: [],);
+        case 1: 
+          return Config();
+        case 2: 
+          return Sair();
+        default:
+          return const Center(child:Text('Rota inválida'));
+      }
+    }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       resizeToAvoidBottomInset: false,
+      body: _buildScreen(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Configurações'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Sair'),
+        ],
+        selectedItemColor: Colors.greenAccent,
+      ),
+    );
+    
+  }
+}
+
+class Home extends StatelessWidget {
+
+  final List<Item> itens;
+  const Home({required this.itens});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(25.0),
         child: GridView.builder(
@@ -135,18 +173,72 @@ class _HomePageState extends State<HomePage> {
             crossAxisCount: 2,
           ),
         ),
+      ),);
+    
+  }
+}
+class Config extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Configurações'),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Configurações'),
-          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Sair'),
-        ],
-        selectedItemColor: Colors.greenAccent,
-        onTap: (int index) {},
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Preferências',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            SwitchListTile(
+              title: Text('Notificações'),
+              value: true,
+              onChanged: (value) {
+                // Implementar a lógica para lidar com a mudança no estado do switch
+              },
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'Opções',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            ListTile(
+              title: Text('Idioma'),
+              subtitle: Text('Português'),
+              onTap: () {
+                // Implementar a lógica para a seleção de idioma ou outra ideia
+              },
+            ),
+            Divider(),
+            ListTile(
+              title: Text('Sair'),
+              onTap: () {
+                Navigator.pushReplacement(context, Home(itens: [],) as Route<Object?>);
+              },
+            ),
+          ],
+        ),
       ),
     );
+    
+  }
+}
+class Sair extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return LoginPage();
+    
   }
 }
 
