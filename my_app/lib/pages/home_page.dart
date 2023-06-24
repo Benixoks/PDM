@@ -95,6 +95,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //appBar: automaticallyImplyLeading: false,
       backgroundColor: Colors.blueGrey,
       resizeToAvoidBottomInset: false,
       body: _buildScreen(_selectedIndex),
@@ -182,7 +183,9 @@ class Config extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Configurações'),
+        automaticallyImplyLeading: false,
+        
+        title: Center(child: Text('Configurações')),
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),

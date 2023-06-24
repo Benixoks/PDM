@@ -1,6 +1,9 @@
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_app/pages/home_page.dart';
+import 'package:my_app/pages/login_page.dart';
+import 'package:my_app/widgets/login/login_form.widget.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -396,57 +399,95 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
 
                       //CheckBox ACEITA TERMOS E CONDIÇÕES
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Checkbox(
-                                activeColor: Colors.greenAccent,
-                                value: aceitaTermo,
-                                onChanged: (checked) {
-                                  print(checked);
-                                  setState(() {
-                                    aceitaTermo = !aceitaTermo;
-                                  });
-                                },
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Checkbox(
+                                    activeColor: Colors.greenAccent,
+                                    value: aceitaTermo,
+                                    onChanged: (checked) {
+                                      print(checked);
+                                      setState(() {
+                                        aceitaTermo = !aceitaTermo;
+                                      });
+                                    },
+                                  ),
+                                  const Text(
+                                    'Eu concordo com os termos e condições',
+                                    style: TextStyle(fontSize: 15, color: Colors.white),
+                                  ),
+                                ],
                               ),
-                              const Text(
-                                'Eu concordo com os termos e condições',
-                                style: TextStyle(fontSize: 15, color: Colors.white),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
+
+                      //Botão volta ao Login
+                    
+                      
 
                       //Botão CADASTRE-SE
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.greenAccent,
-                        ),
-                        onPressed: () {
-                          print('Nome $_nome');
-                          print('Email $_email');
-                          print('Celular $_celular');
-                          print('DataNasc $_dataNasc');
-                          print('CPF $_cpf');
-                          print('Senha $_senha');
-                          if (_formKey.currentState!.validate()) {
-                            const Text('Cadastro feito com sucesso!');
-                            Navigator.pop(context);
-                          } else {
-                            print(
-                                'Não preencheu campos obrigatórios para cadastro');
-                          }
-                        },
-                        child: const Text(
-                          'Cadastrar',
-                          selectionColor: Colors.greenAccent,
+                            style: ElevatedButton.styleFrom(
+                              
+                              backgroundColor: Colors.greenAccent,
+                            ),
+                            onPressed: () {
+                              print('Nome $_nome');
+                              print('Email $_email');
+                              print('Celular $_celular');
+                              print('DataNasc $_dataNasc');
+                              print('CPF $_cpf');
+                              print('Senha $_senha');
+                              if (_formKey.currentState!.validate()) {
+                                const Text('Cadastro feito com sucesso!');
+                                Navigator.pushReplacement(context, MaterialPageRoute(
+                                  builder: (context) =>  HomePage()));
+                              } else {
+                                Text(
+                                    'Não preencheu campos obrigatórios para cadastro');
+                              }
+                            },
+                            child: const Text(
+                              'Cadastrar',
+                              selectionColor: Colors.greenAccent,
+                            ),
+                          ),
+                          Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Row(
+                          children: [
+                            
+                              Text("Já tem uma conta?"),
+                              TextButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginPage(),
+                                  ),
+                                );
+                              },
+                              
+                              child: 
+                              RichText(
+                                text: TextSpan(
+                                  text: 'Faça Login!',
+                                  style: TextStyle(color: Colors.greenAccent),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
+                    
                   ),
                 ),
               ),
