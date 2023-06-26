@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../../pages/home_page.dart';
+import '../../pages/home.page.dart';
 
 class LoginButton extends StatefulWidget {
   var username = "";

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_app/widgets/login/login_form.widget.dart';
-import 'package:my_app/pages/registerPage.dart';
+import 'package:my_app/pages/register.page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
