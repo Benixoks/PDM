@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/widgets/login/login_button.widget.dart';
-import 'package:my_app/common/validations.dart' as validations;
+import 'package:my_app/common/validations.dart';
 
-import '../../pages/home_page.dart';
+import '../../pages/home.page.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -18,20 +18,6 @@ class _LoginFormState extends State<LoginForm> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  // String? emailValidation(email) {
-  //   if (email == null || email.isEmpty) {
-  //     return '* Este campo deve ser preenchido!';
-  //   }
-  //   return null;
-  // }
-
-  // String? passwordValidation(password) {
-  //   if (password == null || password.isEmpty) {
-  //     return '* Este campo deve ser preenchido!';
-  //   }
-  //   return null;
-  // }
 
   void passwordOnChange(val) {
     if (val.contains(RegExp('[A-Z]')) && val.contains(RegExp('[0-9]'))) {
@@ -61,7 +47,7 @@ class _LoginFormState extends State<LoginForm> {
               style: const TextStyle(color: Colors.white),
               cursorColor: Colors.white,
               controller: _emailController,
-              validator: validations.emailValidation,
+              validator: validations['email'],
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -90,7 +76,7 @@ class _LoginFormState extends State<LoginForm> {
                 cursorColor: Colors.white,
                 autofocus: true,
                 controller: _passwordController,
-                validator: validations.passwordValidation,
+                validator: validations['password'],
                 obscureText: !mostraSenha,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(

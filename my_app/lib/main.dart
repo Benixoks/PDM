@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/pages/main_page.dart';
+import 'package:my_app/pages/main.page.dart';
 import 'package:my_app/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +19,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      darkTheme: ThemeData(
+        colorSchemeSeed: const Color.fromARGB(255, 244, 24, 8),
+        brightness: Brightness.dark,
+        useMaterial3: true,
+      ),
+      theme: ThemeData(
+        colorSchemeSeed: const Color.fromARGB(255, 244, 24, 8),
+        brightness: Brightness.light,
+        useMaterial3: true,
+      ),
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }

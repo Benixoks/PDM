@@ -1,9 +1,6 @@
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_app/pages/home_page.dart';
-import 'package:my_app/pages/login_page.dart';
-import 'package:my_app/widgets/login/login_form.widget.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -96,14 +93,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.white),                    
+                              borderSide: const BorderSide(color: Colors.white),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.greenAccent)),
                             labelStyle: const TextStyle(color: Colors.white),
                             labelText: "Nome Completo",
-                            
                             icon: const Icon(Icons.person),
                             iconColor: Colors.greenAccent,
                           ),
@@ -195,9 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           maxLength: 20,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
-                            
                             prefixText: '+55 ',
-                            prefixStyle: const TextStyle(color: Colors.greenAccent),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: const BorderSide(color: Colors.white),
@@ -419,7 +413,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   const Text(
                                     'Eu concordo com os termos e condições',
-                                    style: TextStyle(fontSize: 15, color: Colors.white),
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -429,43 +424,41 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
 
                       //Botão volta ao Login
-                    
-                      
 
                       //Botão CADASTRE-SE
                       ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              
-                              backgroundColor: Colors.greenAccent,
-                            ),
-                            onPressed: () {
-                              print('Nome $_nome');
-                              print('Email $_email');
-                              print('Celular $_celular');
-                              print('DataNasc $_dataNasc');
-                              print('CPF $_cpf');
-                              print('Senha $_senha');
-                              if (_formKey.currentState!.validate()) {
-                                const Text('Cadastro feito com sucesso!');
-                                Navigator.pushReplacement(context, MaterialPageRoute(
-                                  builder: (context) =>  HomePage()));
-                              } else {
-                                Text(
-                                    'Não preencheu campos obrigatórios para cadastro');
-                              }
-                            },
-                            child: const Text(
-                              'Cadastrar',
-                              selectionColor: Colors.greenAccent,
-                            ),
-                          ),
-                          Padding(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.greenAccent,
+                        ),
+                        onPressed: () {
+                          print('Nome $_nome');
+                          print('Email $_email');
+                          print('Celular $_celular');
+                          print('DataNasc $_dataNasc');
+                          print('CPF $_cpf');
+                          print('Senha $_senha');
+                          if (_formKey.currentState!.validate()) {
+                            const Text('Cadastro feito com sucesso!');
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          } else {
+                            Text(
+                                'Não preencheu campos obrigatórios para cadastro');
+                          }
+                        },
+                        child: const Text(
+                          'Cadastrar',
+                          selectionColor: Colors.greenAccent,
+                        ),
+                      ),
+                      Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Row(
                           children: [
-                            
-                              Text("Já tem uma conta?"),
-                              TextButton(
+                            Text("Já tem uma conta?"),
+                            TextButton(
                               onPressed: () {
                                 Navigator.pushReplacement(
                                   context,
@@ -474,9 +467,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                 );
                               },
-                              
-                              child: 
-                              RichText(
+                              child: RichText(
                                 text: TextSpan(
                                   text: 'Faça Login!',
                                   style: TextStyle(color: Colors.greenAccent),
@@ -487,7 +478,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ],
-                    
                   ),
                 ),
               ),
