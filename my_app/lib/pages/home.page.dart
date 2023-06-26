@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
 import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
+import 'package:my_app/pages/details.page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -87,12 +90,25 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(25.0),
+        padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
-          itemCount: itens.length,
+          itemCount: min(10, itens.length),
           itemBuilder: (context, index) {
             final item = itens[index];
-            return ItemCard(item: item);
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsPage(item: item),
+                  ),
+                );
+              },
+              child: Hero(
+                tag: 'item.detail.${item.id}',
+                child: ItemCard(item: item),
+              ),
+            );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -102,6 +118,7 @@ class Home extends StatelessWidget {
     );
   }
 }
+
 
 class Config extends StatelessWidget {
   @override
@@ -129,8 +146,12 @@ class Config extends StatelessWidget {
               value: true,
               onChanged: (value) {}
 
-                        ),],),),);            // Implementar a lógica para lidar com a mudança no estado do switch
-  }}
+        ),
+      ],
+    ),
+  ),
+);            // Implementar a lógica para lidar com a mudança no estado do switch
+}}
 
 class Sair extends StatelessWidget {
   const Sair();
