@@ -16,6 +16,8 @@ class Item {
     required this.url,
   });
 
+  String? get imageUrl => null;
+
   Item copyWith({
     int? id,
     double? price,

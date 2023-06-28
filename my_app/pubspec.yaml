@@ -10,9 +10,6 @@ dependencies:
   email_validator:
   mobx:
   flutter_mobx:
-  provider:
-  firebase_core: ^2.13.0
-  firebase_auth: ^4.6.1
   http:
   flutter:
     sdk: flutter
