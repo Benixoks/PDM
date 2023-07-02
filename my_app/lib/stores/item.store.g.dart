@@ -94,40 +94,6 @@ mixin _$ItemStore on ItemStoreBase, Store {
         .run(() => super.listItems(itemsPerPage, pages));
   }
 
-  late final _$getItemAsyncAction =
-      AsyncAction('ItemStoreBase.getItem', context: context);
-
-  @override
-  Future<Item> getItem(int itemId) {
-    return _$getItemAsyncAction.run(() => super.getItem(itemId));
-  }
-
-  late final _$addItemAsyncAction =
-      AsyncAction('ItemStoreBase.addItem', context: context);
-
-  @override
-  Future<void> addItem(
-      String description, String price, String tag, String url) {
-    return _$addItemAsyncAction
-        .run(() => super.addItem(description, price, tag, url));
-  }
-
-  late final _$removeItemAsyncAction =
-      AsyncAction('ItemStoreBase.removeItem', context: context);
-
-  @override
-  Future<void> removeItem(int itemId) {
-    return _$removeItemAsyncAction.run(() => super.removeItem(itemId));
-  }
-
-  late final _$updateItemAsyncAction =
-      AsyncAction('ItemStoreBase.updateItem', context: context);
-
-  @override
-  Future<void> updateItem(int itemId) {
-    return _$updateItemAsyncAction.run(() => super.updateItem(itemId));
-  }
-
   @override
   String toString() {
     return '''

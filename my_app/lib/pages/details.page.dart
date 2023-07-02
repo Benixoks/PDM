@@ -62,6 +62,10 @@ class DetailsPage extends StatelessWidget {
   }
 
   void addToCart(Item item) {
+    //model Cart
+    //store Cart
+    //service Cart
+
     print('Item adicionado ao carrinho: ${item.description}');
   }
 }

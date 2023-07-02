@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/widgets/common/bottom_bar.widget.dart';
 
 class ConfigPage extends StatelessWidget {
   const ConfigPage({super.key});
@@ -10,6 +11,7 @@ class ConfigPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: Center(child: Text('Configurações')),
       ),
+      bottomNavigationBar: const BottomBar(),
       body: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(

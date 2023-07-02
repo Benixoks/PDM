@@ -22,6 +22,8 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchItens() async {
     await Future.delayed(const Duration(seconds: 1));
+    //ItemStore.listItens
+
     itens = List.generate(
       20,
       (index) => Item(

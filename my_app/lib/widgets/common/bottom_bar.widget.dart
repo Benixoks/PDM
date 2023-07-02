@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/pages/login.page.dart';
 import 'package:provider/provider.dart';
 import '../../pages/config.page.dart';
 import '../../pages/home.page.dart';
+import '../../pages/login.page.dart';
 import '../../stores/user.store.dart';
 
 class BottomBar extends StatefulWidget {
@@ -25,11 +25,7 @@ class _BottomBarState extends State<BottomBar> {
     );
   }
 
-  void _onItemTapped(int index) {
-    // setState(() {
-    //   _selectedIndex = index;
-    // });
-
+  void _onItemTapped(int index) async {
     switch (index) {
       case 0:
         navigateToSelectedPage(homePage);
@@ -38,6 +34,12 @@ class _BottomBarState extends State<BottomBar> {
         navigateToSelectedPage(configPage);
         break;
       case 2:
+        UserStore userStore = Provider.of<UserStore>(context, listen: false);
+        userStore.logOut(userStore.user.id);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
         break;
     }
   }
