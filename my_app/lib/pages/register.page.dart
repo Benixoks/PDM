@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/common/validations.dart';
 import 'package:my_app/widgets/auth_form_field.widget.dart';
+import 'package:provider/provider.dart';
+import '../stores/user.store.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -42,12 +44,21 @@ class _RegisterPageState extends State<RegisterPage> {
     return null;
   }
 
-  void onPressedRegister() {
-    if (_formKey.currentState!.validate()) {
+  void onPressedRegister() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    try {
+      UserStore userStore = Provider.of<UserStore>(context, listen: false);
+
+      await userStore.register(_nameController.text, _emailController.text,
+          _phoneController.text, _cpfController.text, _passwordController.text);
+
+      if (context.mounted) Navigator.pushReplacementNamed(context, '/home');
       const Text('Cadastro feito com sucesso!');
-      Navigator.pop(context);
-    } else {
-      print('Não preencheu campos obrigatórios para cadastro');
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -108,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             RegExp('[0-9]'),
                           ),
                           MaskTextInputFormatter(
-                            mask: '(###) # ####-####',
+                            mask: '(##) # ####-####',
                             filter: {'#': RegExp('[0-9]')},
                           ),
                         ],
@@ -116,65 +127,65 @@ class _RegisterPageState extends State<RegisterPage> {
                           icon: const Icon(Icons.phone),
                           prefixText: '+55 ',
                           prefixStyle: const TextStyle(color: Colors.white),
-                          hintText: '(DDD) 0 0000-0000',
+                          hintText: '(DD) 0 0000-0000',
                           iconColor: Theme.of(context).colorScheme.primary,
                         ),
                       ),
 
-                      AuthFormField(
-                        nameController: _birthDateController,
-                        fieldName: 'birthDate',
-                        keyboardType: TextInputType.phone,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(
-                            RegExp('[0-9]'),
-                          ),
-                          MaskTextInputFormatter(
-                            mask: '(###) # ####-####',
-                            filter: {'#': RegExp('[0-9]')},
-                          ),
-                        ],
-                        inputDecoration: InputDecoration(
-                          icon: const Icon(Icons.person),
-                          hintText: 'dd/mm/aaaa',
-                          iconColor: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
+                      // AuthFormField(
+                      //   nameController: _birthDateController,
+                      //   fieldName: 'birthDate',
+                      //   keyboardType: TextInputType.phone,
+                      //   inputFormatters: [
+                      //     FilteringTextInputFormatter.allow(
+                      //       RegExp('[0-9]'),
+                      //     ),
+                      //     MaskTextInputFormatter(
+                      //       mask: '(###) # ####-####',
+                      //       filter: {'#': RegExp('[0-9]')},
+                      //     ),
+                      //   ],
+                      //   inputDecoration: InputDecoration(
+                      //     icon: const Icon(Icons.person),
+                      //     hintText: 'dd/mm/aaaa',
+                      //     iconColor: Theme.of(context).colorScheme.primary,
+                      //   ),
+                      // ),
 
-                      //TextField DATA DE NASCIMENTO
-                      Padding(
-                        padding: const EdgeInsets.all(25.0),
-                        child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
-                          cursorColor: Colors.white,
-                          controller: _birthDateController,
-                          validator: validations['birthDate'],
-                          autofocus: true,
-                          inputFormatters: [
-                            MaskTextInputFormatter(
-                              mask: '##/##/####',
-                              filter: {'#': RegExp(r'[0-9]')},
-                            ),
-                          ],
-                          maxLength: 10,
-                          keyboardType: TextInputType.datetime,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.white),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.greenAccent)),
-                            labelStyle: const TextStyle(color: Colors.white),
-                            labelText: "Data de Nascimento",
-                            hintText: 'dd/mm/aaaa',
-                            hintStyle: const TextStyle(color: Colors.white),
-                            icon: const Icon(Icons.person),
-                            iconColor: Colors.greenAccent,
-                          ),
-                        ),
-                      ),
+                      // //TextField DATA DE NASCIMENTO
+                      // Padding(
+                      //   padding: const EdgeInsets.all(25.0),
+                      //   child: TextFormField(
+                      //     style: const TextStyle(color: Colors.white),
+                      //     cursorColor: Colors.white,
+                      //     controller: _birthDateController,
+                      //     validator: validations['birthDate'],
+                      //     autofocus: true,
+                      //     inputFormatters: [
+                      //       MaskTextInputFormatter(
+                      //         mask: '##/##/####',
+                      //         filter: {'#': RegExp(r'[0-9]')},
+                      //       ),
+                      //     ],
+                      //     maxLength: 10,
+                      //     keyboardType: TextInputType.datetime,
+                      //     decoration: InputDecoration(
+                      //       enabledBorder: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(12),
+                      //         borderSide: const BorderSide(color: Colors.white),
+                      //       ),
+                      //       focusedBorder: const OutlineInputBorder(
+                      //           borderSide:
+                      //               BorderSide(color: Colors.greenAccent)),
+                      //       labelStyle: const TextStyle(color: Colors.white),
+                      //       labelText: "Data de Nascimento",
+                      //       hintText: 'dd/mm/aaaa',
+                      //       hintStyle: const TextStyle(color: Colors.white),
+                      //       icon: const Icon(Icons.person),
+                      //       iconColor: Colors.greenAccent,
+                      //     ),
+                      //   ),
+                      // ),
 
                       //TextField CPF
                       Padding(

@@ -24,6 +24,21 @@ mixin _$ItemStore on ItemStoreBase, Store {
     });
   }
 
+  late final _$priceAtom = Atom(name: 'ItemStoreBase.price', context: context);
+
+  @override
+  double get price {
+    _$priceAtom.reportRead();
+    return super.price;
+  }
+
+  @override
+  set price(double value) {
+    _$priceAtom.reportWrite(value, super.price, () {
+      super.price = value;
+    });
+  }
+
   late final _$descriptionAtom =
       Atom(name: 'ItemStoreBase.description', context: context);
 
@@ -37,21 +52,6 @@ mixin _$ItemStore on ItemStoreBase, Store {
   set description(String value) {
     _$descriptionAtom.reportWrite(value, super.description, () {
       super.description = value;
-    });
-  }
-
-  late final _$priceAtom = Atom(name: 'ItemStoreBase.price', context: context);
-
-  @override
-  double get price {
-    _$priceAtom.reportRead();
-    return super.price;
-  }
-
-  @override
-  set price(double value) {
-    _$priceAtom.reportWrite(value, super.price, () {
-      super.price = value;
     });
   }
 
@@ -132,8 +132,8 @@ mixin _$ItemStore on ItemStoreBase, Store {
   String toString() {
     return '''
 id: ${id},
-description: ${description},
 price: ${price},
+description: ${description},
 tag: ${tag},
 url: ${url}
     ''';

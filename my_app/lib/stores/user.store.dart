@@ -1,55 +1,58 @@
+import 'dart:js_interop';
+
 import 'package:mobx/mobx.dart';
+import 'package:my_app/common/extensions.dart';
+import 'package:my_app/models/user.model.dart';
+import 'package:my_app/services/user.service.dart';
 
 part 'user.store.g.dart';
 
 class UserStore = UserStoreBase with _$UserStore;
 
 abstract class UserStoreBase with Store {
-  @observable
-  int id = -1;
+  final UserService _service = UserService();
 
   @observable
-  String name = '';
-
-  @observable
-  String email = '';
-
-  @observable
-  String phone = '';
-
-  @observable
-  String cpf = '';
-
-  @observable
-  String password = '';
-
-  @observable
-  DateTime birthDate = DateTime(0000, 00, 00);
-
-  @observable
-  String token = '';
-
-  @computed
-  bool get isAuthenticated => token.isNotEmpty;
+  User user = User(0, "", "", "", "");
 
   @action
-  Future<void> login(String email, String password) async {
-    try {} catch (e) {}
+  Future<void> logIn(String email, String password) async {
+    try {
+      var response = await _service.logIn(email, password);
+      user = response;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @action
   Future<void> register(String name, String email, String phone, String cpf,
-      String password, DateTime birthDate) async {
-    try {} catch (e) {}
+      String password) async {
+    var names = name.getFirstAndLastName();
+
+    try {
+      var response = await _service.register(names[0], names[1], email,
+          phone.toDigitsOnly(), cpf.toDigitsOnly(), password);
+
+      user = response;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @action
-  Future<void> signOut(String email) async {
-    try {} catch (e) {}
-  }
+  Future<void> logOut(int userId) async {
+    try {
+      var response = await _service.logOut(userId);
 
-  @action
-  Future<void> changePassword(String email) async {
-    try {} catch (e) {}
+      if (response.isNull) {
+        throw Exception("Ocorreu um erro ao deslogar o usuário");
+      }
+      if (response.statusCode == 200) {
+        user = User(0, "", "", "", "");
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 }

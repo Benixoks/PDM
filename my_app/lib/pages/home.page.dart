@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
 import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
+import 'package:provider/provider.dart';
 
-
+import '../common/hero.dart';
+import '../stores/user.store.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -61,6 +63,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userStore = Provider.of<UserStore>(context, listen: false);
+
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       resizeToAvoidBottomInset: false,
@@ -79,9 +83,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
 
 class Home extends StatelessWidget {
   final List<Item> itens;
@@ -105,7 +106,8 @@ class Home extends StatelessWidget {
                     builder: (BuildContext context) {
                       return Center(
                         child: Hero(
-                          tag: 'item.detail.${item.id}', //implementar lógica de id único por produto
+                          tag:
+                              'item.detail.${item.id}', //implementar lógica de id único por produto
                           child: ItemCard(item: item),
                         ),
                       );
@@ -114,7 +116,7 @@ class Home extends StatelessWidget {
                 );
               },
               child: ItemCard(item: item),
-              );
+            );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -124,86 +126,6 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-class HeroDialogRoute<T> extends PageRoute<T> {
-  final WidgetBuilder builder;
-
-  HeroDialogRoute({required this.builder});
-
-  @override
-  Color? get barrierColor => Colors.black54;
-
-  @override
-  bool get barrierDismissible => true;
-
-  @override
-  String get barrierLabel => '';
-
-  @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-    return builder(context);
-  }
-
-  @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-    return FadeTransition(
-      opacity: animation,
-      child: child,
-    );
-  }
-
-  @override
-  Duration get transitionDuration => const Duration(milliseconds: 300);
-
-  @override
-  bool get maintainState => true;
-}
-
-class DetailsPage extends StatelessWidget {
-  final Item item;
-
-  const DetailsPage({required this.item});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: Hero(
-              tag: 'item_${item.id}',
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Image.file(
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      File('lib/assets/images/camisa1.jpg'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Text(
-              item.description,
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-
-
 
 class Config extends StatelessWidget {
   @override
@@ -227,42 +149,21 @@ class Config extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             SwitchListTile(
-              title: Text('Notificações'),
-              value: true,
-              onChanged: (value) {}
-
+                title: Text('Notificações'),
+                value: true,
+                onChanged: (value) {}),
+          ],
         ),
-      ],
-    ),
-  ),
-);            // Implementar a lógica para lidar com a mudança no estado do switch
-}}
+      ),
+    ); // Implementar a lógica para lidar com a mudança no estado do switch
+  }
+}
 
 class Sair extends StatelessWidget {
   const Sair();
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-              title: const Text('Tem certeza que deseja sair?'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(); // Fechar o diálogo
-                  },
-                  child: const Text('Cancelar'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                      (Route<dynamic> route) => false, // Impede o retorno à página anterior
-                    );
-                  },
-                  child: const Text('Sair'),
-                ),
-              ],
-            );
+    return LoginPage();
   }
 }

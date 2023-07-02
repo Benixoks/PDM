@@ -10,6 +10,7 @@ dependencies:
   email_validator:
   mobx:
   flutter_mobx:
+  provider:
   http:
   flutter:
     sdk: flutter
