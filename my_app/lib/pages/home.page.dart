@@ -1,10 +1,9 @@
+import 'dart:io';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
 import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
-import 'package:provider/provider.dart';
-
-import '../stores/user.store.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,65 +13,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // List<String> values = [
-  //   'R\$219,90',
-  //   'R\$269,90',
-  //   'R\$399,90',
-  //   'R\$269,90',
-  //   'R\$189,90',
-  //   'R\$269,90',
-  // ];
-  // List<String> valuesImg = [
-  //   'lib/assets/images/camisa1.jpg',
-  //   'lib/assets/images/camisa2.jpg',
-  //   'lib/assets/images/camisa3.jpg',
-  //   'lib/assets/images/camisa4.jpg',
-  //   'lib/assets/images/camisa5.webp',
-  //   'lib/assets/images/camisa6.webp'
-  // ];
   List<Item> itens = [];
   var isLoading = false;
+  int _selectedIndex = 0;
 
   Future<void> fetchItens() async {
     await Future.delayed(const Duration(seconds: 1));
     itens = List.generate(
       20,
       (index) => Item(
-          id: 1,
-          price: 189.9,
-          description: "Camisa Framengo palha",
-          tag: "Camiseta",
-          url: 'lib/assets/images/camisa1.jpg'),
+        id: 1,
+        price: 189.9,
+        description: "Camiseta Flamengo Oficial",
+        tag: "Camiseta Flamengo Oficial Preta e Vermelha",
+        url: 'lib/assets/images/camisa1.jpg',
+      ),
     );
     setState(() {});
-  }
-
-  final _homeController = ScrollController();
-  final _searchController = TextEditingController();
-  String search = '';
-  int _selectedIndex = 0;
-
-  static const TextStyle optionStyle = TextStyle(
-      fontSize: 30, fontWeight: FontWeight.bold, color: Colors.greenAccent);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Configurações',
-      style: optionStyle,
-    ),
-    Text(
-      'Sair',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   @override
@@ -81,12 +38,16 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   Widget _buildScreen(int index) {
     switch (index) {
       case 0:
-        return const Home(
-          itens: [],
-        );
+        return Home(itens: itens);
       case 1:
         return Config();
       case 2:
@@ -101,7 +62,6 @@ class _HomePageState extends State<HomePage> {
     final userStore = Provider.of<UserStore>(context, listen: false);
 
     return Scaffold(
-      //appBar: automaticallyImplyLeading: false,
       backgroundColor: Colors.blueGrey,
       resizeToAvoidBottomInset: false,
       body: _buildScreen(_selectedIndex),
@@ -122,57 +82,36 @@ class _HomePageState extends State<HomePage> {
 
 class Home extends StatelessWidget {
   final List<Item> itens;
+
   const Home({required this.itens});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(25.0),
+        padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
-          itemCount: 6,
+          itemCount: min(10, itens.length),
           itemBuilder: (context, index) {
-            return ListView(
-              children: [
-                ...itens.map((e) => ItemCard(item: e)).toList()
-                // Card(
-                //   elevation: 10,
-                //   child: Center(
-                //       child: Padding(
-                //     padding: const EdgeInsets.all(25.0),
-                //     child: Column(
-                //       children: [
-                //         Center(
-                //             child: Image(
-                //           image: AssetImage(valuesImg[index]),
-                //           width: 150,
-                //           height: 97,
-                //         )),
-                //         Center(
-                //           child: Text(values[index]),
-                //         ),
-                //       ],
-                //     ),
-                //   )),
-                // ),
-                // Card(
-
-                //   elevation: 10,
-                //   child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         RichText(
-                //           text: TextSpan(
-                //             text: 'Seja um membro Sócio Torcedor',
-                //             style: TextStyle(color: Colors.red),
-                //           ),
-                //         ),
-                //         Text(
-                //           ' e ganhe 25% de desconto nas compras em toda a loja!',
-                //         ),
-                //       ],
-                //     ))
-              ],
+            final item = itens[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  HeroDialogRoute(
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: Hero(
+                          tag:
+                              'item.detail.${item.id}', //implementar lógica de id único por produto
+                          child: ItemCard(item: item),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+              child: ItemCard(item: item),
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -206,68 +145,21 @@ class Config extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             SwitchListTile(
-              title: Text('Notificações'),
-              value: true,
-              onChanged: (value) {
-                // Implementar a lógica para lidar com a mudança no estado do switch
-              },
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              'Opções',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            ListTile(
-              title: Text('Idioma'),
-              subtitle: Text('Português'),
-              onTap: () {
-                // Implementar a lógica para a seleção de idioma ou outra ideia
-              },
-            ),
-            Divider(),
-            ListTile(
-              title: Text('Sair'),
-              onTap: () {
-                Navigator.pushReplacement(
-                    context,
-                    Home(
-                      itens: [],
-                    ) as Route<Object?>);
-              },
-            ),
+                title: Text('Notificações'),
+                value: true,
+                onChanged: (value) {}),
           ],
         ),
       ),
-    );
+    ); // Implementar a lógica para lidar com a mudança no estado do switch
   }
 }
 
 class Sair extends StatelessWidget {
+  const Sair();
+
   @override
   Widget build(BuildContext context) {
     return LoginPage();
   }
 }
-
-// class _listViewBody extends StatelessWidget {
-//   const _listViewBody({
-//     super.key,
-//     required List<Widget> widgetOptions,
-//     required int selectedIndex,
-//   })  : _widgetOptions = widgetOptions,
-//         _selectedIndex = selectedIndex;
-
-//   final List<Widget> _widgetOptions;
-//   final int _selectedIndex;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: _widgetOptions.elementAt(_selectedIndex),
-//     );
-//   }
-// }
