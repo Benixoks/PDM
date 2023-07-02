@@ -15,8 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
 
-  Future logIn() async {}
-
   @override
   void dispose() {
     _emailController.dispose();

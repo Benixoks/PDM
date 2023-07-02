@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:mobx/mobx.dart';
 import 'package:my_app/common/extensions.dart';
 import 'package:my_app/models/user.model.dart';
@@ -14,7 +16,14 @@ abstract class UserStoreBase with Store {
   User user = User(0, "", "", "", "");
 
   @action
-  Future<void> login(String email, String password) async {}
+  Future<void> logIn(String email, String password) async {
+    try {
+      var response = await _service.logIn(email, password);
+      user = response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   @action
   Future<void> register(String name, String email, String phone, String cpf,
@@ -24,6 +33,7 @@ abstract class UserStoreBase with Store {
     try {
       var response = await _service.register(names[0], names[1], email,
           phone.toDigitsOnly(), cpf.toDigitsOnly(), password);
+
       user = response;
     } catch (e) {
       rethrow;
@@ -31,12 +41,18 @@ abstract class UserStoreBase with Store {
   }
 
   @action
-  Future<void> signOut(String email) async {
-    try {} catch (e) {}
-  }
+  Future<void> logOut(int userId) async {
+    try {
+      var response = await _service.logOut(userId);
 
-  @action
-  Future<void> changePassword(String email) async {
-    try {} catch (e) {}
+      if (response.isNull) {
+        throw Exception("Ocorreu um erro ao deslogar o usuário");
+      }
+      if (response.statusCode == 200) {
+        user = User(0, "", "", "", "");
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 }

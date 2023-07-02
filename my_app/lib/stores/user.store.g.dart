@@ -24,12 +24,12 @@ mixin _$UserStore on UserStoreBase, Store {
     });
   }
 
-  late final _$loginAsyncAction =
-      AsyncAction('UserStoreBase.login', context: context);
+  late final _$logInAsyncAction =
+      AsyncAction('UserStoreBase.logIn', context: context);
 
   @override
-  Future<void> login(String email, String password) {
-    return _$loginAsyncAction.run(() => super.login(email, password));
+  Future<void> logIn(String email, String password) {
+    return _$logInAsyncAction.run(() => super.logIn(email, password));
   }
 
   late final _$registerAsyncAction =
@@ -42,20 +42,12 @@ mixin _$UserStore on UserStoreBase, Store {
         .run(() => super.register(name, email, phone, cpf, password));
   }
 
-  late final _$signOutAsyncAction =
-      AsyncAction('UserStoreBase.signOut', context: context);
+  late final _$logOutAsyncAction =
+      AsyncAction('UserStoreBase.logOut', context: context);
 
   @override
-  Future<void> signOut(String email) {
-    return _$signOutAsyncAction.run(() => super.signOut(email));
-  }
-
-  late final _$changePasswordAsyncAction =
-      AsyncAction('UserStoreBase.changePassword', context: context);
-
-  @override
-  Future<void> changePassword(String email) {
-    return _$changePasswordAsyncAction.run(() => super.changePassword(email));
+  Future<void> logOut(int userId) {
+    return _$logOutAsyncAction.run(() => super.logOut(userId));
   }
 
   @override

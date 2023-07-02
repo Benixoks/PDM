@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../pages/home.page.dart';
+import '../stores/user.store.dart';
 
 class AuthButton extends StatefulWidget {
-  final String username;
+  final String email;
   final String password;
 
   const AuthButton({
-    required this.username,
+    required this.email,
     required this.password,
     super.key,
   });
@@ -16,18 +18,6 @@ class AuthButton extends StatefulWidget {
 }
 
 class _AuthButtonState extends State<AuthButton> {
-  void login() async {
-    // var url = Uri.parse(
-    //     'https://localhost:7242/api/Auth/login'); // Replace with your own endpoint
-
-    // if (response.statusCode == 200) {
-    //   var user = jsonDecode(response.body);
-    //   navigate(user['firstame'], user['lastName'], user['balance']);
-    // } else {
-    //   print(response.body);
-    // }
-  }
-
   void navigate(String firstName, String lastName, int balance) {
     Navigator.push(
       context,
@@ -35,13 +25,22 @@ class _AuthButtonState extends State<AuthButton> {
     );
   }
 
-  void onPressedLogin() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(),
-      ),
-    );
+  void onPressedLogin() async {
+    UserStore userStore = Provider.of<UserStore>(context, listen: false);
+
+    print(widget.email);
+    print(widget.password);
+
+    // await userStore.logIn(widget.email, widget.password);
+
+    // if (context.mounted) Navigator.pushReplacementNamed(context, '/home');
+
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => const HomePage(),
+    //   ),
+    // );
   }
 
   @override

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/pages/home.page.dart';
 import 'package:my_app/pages/login.page.dart';
-import 'package:my_app/pages/main.page.dart';
-import 'package:my_app/provider/user_provider.dart';
+import 'package:my_app/pages/register.page.dart';
 import 'package:my_app/stores/item.store.dart';
 import 'package:my_app/stores/user.store.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +25,11 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
+          routes: {
+            '/login': (context) => const LoginPage(),
+            '/home': (context) => const HomePage(),
+            '/register': (context) => const RegisterPage()
+          },
           darkTheme: ThemeData(
             brightness: Brightness.dark,
             primaryColor: Colors.red,
