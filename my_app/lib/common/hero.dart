@@ -38,44 +38,46 @@ class HeroDialogRoute<T> extends PageRoute<T> {
   bool get maintainState => true;
 }
 
-class DetailsPage extends StatelessWidget {
-  final Item item;
+// class DetailsPage extends StatelessWidget {
+//   final Item item;
 
-  const DetailsPage({required this.item});
+//   const DetailsPage({required this.item});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: Hero(
-              tag: 'item_${item.id}',
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Image.file(
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      File('lib/assets/images/camisa1.jpg'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Text(
-              item.description,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         children: [
+//           Expanded(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               crossAxisAlignment: CrossAxisAlignment.baseline,
+//               textBaseline: TextBaseline.alphabetic,
+//               children: [
+//                 Padding(
+//                   padding: const EdgeInsets.all(30.0),
+//                   child: Image(
+//                       fit: BoxFit.cover,
+//                       image: AssetImage(item.url),
+//                       width: double.infinity),
+//                   // child: Image.file(
+//                   //   fit: BoxFit.cover,
+//                   //   width: double.infinity,
+//                   //   File('lib/assets/images/camisa1.jpg'),
+//                   // ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.all(30.0),
+//             child: Text(
+//               item.description,
+//               style: const TextStyle(fontSize: 16),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

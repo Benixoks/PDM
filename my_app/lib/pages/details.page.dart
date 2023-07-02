@@ -12,12 +12,56 @@ class DetailsPage extends StatelessWidget {
     final uniqueTag = 'item.detail.${item.id}';
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Detalhes do Item'),
+      ),
       body: Center(
-        child: Hero(
-          tag: uniqueTag,
-          child: ItemCard(item: item),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+                fit: BoxFit.cover,
+                image: AssetImage(item.url),
+                width: double.infinity),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.red,
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  child: Text('Voltar'),
+                ),
+                SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    addToCart(item);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.red,
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  child: Text('Adicionar ao Carrinho'),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  void addToCart(Item item) {
+    print('Item adicionado ao carrinho: ${item.description}');
   }
 }
