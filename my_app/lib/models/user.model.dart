@@ -2,65 +2,37 @@
 import 'dart:convert';
 
 class User {
-  final int id;
-  final String firstName;
-  final String lastName;
-  final String cpf;
-  final String username;
-  final String email;
-  final String phone;
+  int id = 0;
+  String firstName = '';
+  String lastName = '';
+  String email = '';
+  String userToken = '';
 
-  User({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.cpf,
-    required this.username,
-    required this.email,
-    required this.phone,
-  });
-
-  User copyWith({
-    int? id,
-    String? firstName,
-    String? lastName,
-    String? cpf,
-    String? username,
-    String? email,
-    String? phone,
-  }) {
-    return User(
-      id: id ?? this.id,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      cpf: cpf ?? this.cpf,
-      username: username ?? this.username,
-      email: email ?? this.email,
-      phone: phone ?? this.phone,
-    );
-  }
+  User(
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.userToken,
+  );
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'firstName': firstName,
       'lastName': lastName,
-      'cpf': cpf,
-      'username': username,
       'email': email,
-      'phone': phone,
+      'userToken': userToken,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id'] as int,
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
-      cpf: map['cpf'] as String,
-      username: map['username'] as String,
-      email: map['email'] as String,
-      phone: map['phone'] as String,
+      map['id'] as int,
+      map['firstName'] as String,
+      map['lastName'] as String,
+      map['email'] as String,
+      map['userToken'] as String,
     );
   }
 
@@ -71,7 +43,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, cpf: $cpf, username: $username, email: $email, phone: $phone)';
+    return 'User(id: $id, firstName: $firstName, lastName: $lastName, email: $email, userToken: $userToken)';
   }
 
   @override
@@ -81,10 +53,8 @@ class User {
     return other.id == id &&
         other.firstName == firstName &&
         other.lastName == lastName &&
-        other.cpf == cpf &&
-        other.username == username &&
         other.email == email &&
-        other.phone == phone;
+        other.userToken == userToken;
   }
 
   @override
@@ -92,9 +62,7 @@ class User {
     return id.hashCode ^
         firstName.hashCode ^
         lastName.hashCode ^
-        cpf.hashCode ^
-        username.hashCode ^
         email.hashCode ^
-        phone.hashCode;
+        userToken.hashCode;
   }
 }

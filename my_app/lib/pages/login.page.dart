@@ -1,9 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:my_app/widgets/login/login_form.widget.dart';
 import 'package:my_app/pages/register.page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,21 +9,14 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-bool mostraSenha = false;
-String _email = '';
-String _senha = '';
-
-final _formKey = GlobalKey<FormState>();
-final _emailController = TextEditingController();
-final _senhaController = TextEditingController();
-
-Future signIn() async {
-  await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _senhaController.text.trim());
-}
-
 class _LoginPageState extends State<LoginPage> {
+  bool mostraSenha = false;
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _senhaController = TextEditingController();
+
+  Future logIn() async {}
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -52,24 +42,24 @@ class _LoginPageState extends State<LoginPage> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Olá, Torcedor!\nSeja Bem Vindo ao ClubFLA!',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: const EdgeInsets.symmetric(vertical: 30.0),
                         child: Text(
                             'Realize seu login na plaforma oficial do sócio torcedor!',
                             style: TextStyle(fontSize: 20)),
                       ),
-                      LoginForm(),
+                      const LoginForm(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Não tem uma conta?'),
+                          const Text('Não tem uma conta?'),
                           TextButton(
                             onPressed: () {
                               Navigator.pushReplacement(
@@ -80,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                             child: RichText(
-                              text: TextSpan(
+                              text: const TextSpan(
                                 text: 'Cadastre-se!',
                                 style: TextStyle(color: Colors.greenAccent),
                               ),

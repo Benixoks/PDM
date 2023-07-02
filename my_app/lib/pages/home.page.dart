@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
-import 'package:my_app/pages/login_page.dart';
+import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
+import 'package:provider/provider.dart';
+
+import '../stores/user.store.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}): super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -27,7 +30,6 @@ class _HomePageState extends State<HomePage> {
   //   'lib/assets/images/camisa5.webp',
   //   'lib/assets/images/camisa6.webp'
   // ];
-
   List<Item> itens = [];
   var isLoading = false;
 
@@ -79,21 +81,25 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  Widget _buildScreen(int index){
-      switch(index){
-        case 0: 
-          return Home(itens: [],);
-        case 1: 
-          return Config();
-        case 2: 
-          return Sair();
-        default:
-          return const Center(child:Text('Rota inválida'));
-      }
+  Widget _buildScreen(int index) {
+    switch (index) {
+      case 0:
+        return const Home(
+          itens: [],
+        );
+      case 1:
+        return Config();
+      case 2:
+        return Sair();
+      default:
+        return const Center(child: Text('Rota inválida'));
     }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final userStore = Provider.of<UserStore>(context, listen: false);
+
     return Scaffold(
       //appBar: automaticallyImplyLeading: false,
       backgroundColor: Colors.blueGrey,
@@ -104,18 +110,17 @@ class _HomePageState extends State<HomePage> {
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Configurações'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Configurações'),
           BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Sair'),
         ],
         selectedItemColor: Colors.greenAccent,
       ),
     );
-    
   }
 }
 
 class Home extends StatelessWidget {
-
   final List<Item> itens;
   const Home({required this.itens});
 
@@ -174,17 +179,17 @@ class Home extends StatelessWidget {
             crossAxisCount: 2,
           ),
         ),
-      ),);
-    
+      ),
+    );
   }
 }
+
 class Config extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        
         title: Center(child: Text('Configurações')),
       ),
       body: Container(
@@ -227,21 +232,24 @@ class Config extends StatelessWidget {
             ListTile(
               title: Text('Sair'),
               onTap: () {
-                Navigator.pushReplacement(context, Home(itens: [],) as Route<Object?>);
+                Navigator.pushReplacement(
+                    context,
+                    Home(
+                      itens: [],
+                    ) as Route<Object?>);
               },
             ),
           ],
         ),
       ),
     );
-    
   }
 }
+
 class Sair extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoginPage();
-    
   }
 }
 

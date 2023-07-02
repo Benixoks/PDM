@@ -1,46 +1,33 @@
 import 'package:mobx/mobx.dart';
+import 'package:my_app/common/extensions.dart';
+import 'package:my_app/models/user.model.dart';
+import 'package:my_app/services/user.service.dart';
 
 part 'user.store.g.dart';
 
 class UserStore = UserStoreBase with _$UserStore;
 
 abstract class UserStoreBase with Store {
-  @observable
-  int id = -1;
+  final UserService _service = UserService();
 
   @observable
-  String name = '';
-
-  @observable
-  String email = '';
-
-  @observable
-  String phone = '';
-
-  @observable
-  String cpf = '';
-
-  @observable
-  String password = '';
-
-  @observable
-  DateTime birthDate = DateTime(0000, 00, 00);
-
-  @observable
-  String token = '';
-
-  @computed
-  bool get isAuthenticated => token.isNotEmpty;
+  User user = User(0, "", "", "", "");
 
   @action
-  Future<void> login(String email, String password) async {
-    try {} catch (e) {}
-  }
+  Future<void> login(String email, String password) async {}
 
   @action
   Future<void> register(String name, String email, String phone, String cpf,
-      String password, DateTime birthDate) async {
-    try {} catch (e) {}
+      String password) async {
+    var names = name.getFirstAndLastName();
+
+    try {
+      var response = await _service.register(names[0], names[1], email,
+          phone.toDigitsOnly(), cpf.toDigitsOnly(), password);
+      user = response;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @action
