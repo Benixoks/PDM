@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:my_app/common/validations.dart';
 import 'package:my_app/widgets/auth_form_field.widget.dart';
 import 'package:provider/provider.dart';
-
 import '../stores/user.store.dart';
 
 class RegisterPage extends StatefulWidget {

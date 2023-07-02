@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
 import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
+import 'package:provider/provider.dart';
+
+import '../common/hero.dart';
+import '../stores/user.store.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
