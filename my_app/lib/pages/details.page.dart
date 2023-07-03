@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/models/item.model.dart';
-import 'package:my_app/widgets/details/dropdown.widget.dart';
+import 'package:my_app/pages/cart.page.dart';
+import 'package:provider/provider.dart';
+
+import '../models/item.model.dart';
+import '../models/cart.dart';
 
 class DetailsPage extends StatefulWidget {
   final Item item;
@@ -12,7 +15,31 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  SizeLabel? selectedSize;
+  //SizeLabel? selectedSize;
+
+  void addToCart(Item item) {
+    final cart = Provider.of<Cart>(context, listen: false);
+    cart.addItemToCart(widget.item);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Item adicionado com sucesso!'),
+        content: TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CartPage()),
+            );
+          },
+          child: Text('Confira seu carrinho'),
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Color.fromARGB(255, 189, 1, 1),),
+        ),
+      ),
+    );
+    print('Item adicionado ao carrinho: ${item.tag}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +54,13 @@ class _DetailsPageState extends State<DetailsPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              fit: BoxFit.cover,
-              image: AssetImage(widget.item.url),
-              width: double.infinity,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image(
+                fit: BoxFit.cover,
+                image: AssetImage(widget.item.url),
+                width: double.infinity,
+              ),
             ),
             const SizedBox(height: 20),
             Row(
@@ -58,7 +88,11 @@ class _DetailsPageState extends State<DetailsPage> {
             // ),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Column(children: [Text(widget.item.description)],),
+              child: Column(
+                children: [
+                  Text(widget.item.description),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -101,10 +135,5 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
       ),
     );
-  }
-
-  void addToCart(Item item) {
-    // Lógica para adicionar o item ao carrinho
-    print('Item adicionado ao carrinho: ${item.description}');
   }
 }

@@ -25,11 +25,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.black,
       body: Theme(
         data: ThemeData(
           textSelectionTheme:
-              const TextSelectionThemeData(selectionColor: Colors.greenAccent),
+              const TextSelectionThemeData(selectionColor: Color.fromARGB(255, 189, 1, 1),),
         ),
         child: Padding(
           padding: const EdgeInsets.all(25.0),
@@ -45,19 +45,20 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
+                          color: Colors.white,
                         ),
                       ),
                       const Padding(
                         padding: const EdgeInsets.symmetric(vertical: 30.0),
                         child: Text(
                             'Realize seu login na plaforma oficial do sócio torcedor!',
-                            style: TextStyle(fontSize: 20)),
+                            style: TextStyle(fontSize: 20,color: Colors.white)),
                       ),
                       const LoginForm(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Não tem uma conta?'),
+                          const Text('Não tem uma conta?',style: TextStyle(color: Colors.white),),
                           TextButton(
                             onPressed: () {
                               Navigator.pushReplacement(
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: RichText(
                               text: const TextSpan(
                                 text: 'Cadastre-se!',
-                                style: TextStyle(color: Colors.greenAccent),
+                                style: TextStyle(color: Color.fromARGB(255, 189, 1, 1),),
                               ),
                             ),
                           ),

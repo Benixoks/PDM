@@ -32,9 +32,10 @@ class _LoginFormState extends State<LoginForm> {
           nameController: _emailController,
           fieldName: 'email',
           keyboardType: TextInputType.emailAddress,
-          inputDecoration: InputDecoration(
-            icon: const Icon(Icons.mail),
-            iconColor: Theme.of(context).colorScheme.primary,
+          inputDecoration: const InputDecoration(
+            labelStyle: const TextStyle(color: Colors.white),
+            icon: Icon(Icons.mail),
+            iconColor: Color.fromARGB(255, 189, 1, 1),
           ),
         ),
         AuthFormField(
@@ -44,7 +45,7 @@ class _LoginFormState extends State<LoginForm> {
             labelStyle: const TextStyle(color: Colors.white),
             labelText: "Senha",
             icon: const Icon(Icons.key),
-            iconColor: Colors.greenAccent,
+            iconColor: Color.fromARGB(255, 189, 1, 1),
             suffixIcon: IconButton(
               icon: Icon(
                 mostraSenha ? Icons.visibility : Icons.visibility_off,
@@ -62,10 +63,10 @@ class _LoginFormState extends State<LoginForm> {
           padding: const EdgeInsets.all(15.0),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.greenAccent,
+              backgroundColor: Color.fromARGB(255, 189, 1, 1),
             ),
             onPressed: onPressedLogin,
-            child: const Text('Entrar'),
+            child: const Text('Entrar',style: TextStyle(color: Colors.white,),),
           ),
         )
       ],
