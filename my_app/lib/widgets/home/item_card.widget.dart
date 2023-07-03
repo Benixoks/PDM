@@ -17,8 +17,9 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        elevation: 10,
+    return Container(
+      margin: EdgeInsets.only(left: 25),
+      width: 280,
         child: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -44,16 +45,14 @@ class ItemCard extends StatelessWidget {
                 Center(
                     child: Image(
                   image: AssetImage(item.url),
-                  width: 150,
-                  height: 97,
+                  width: double.infinity,
+                  height: 230,
                 )),
-                Padding(
-                  padding: const EdgeInsets.only(left: 3),
-                  child: Text(item.description),
-                ),
+                Text(item.tag,textScaleFactor: 1,textAlign: TextAlign.center),
               ],
             ),
           )),
-        ));
+        ),
+      );
   }
 }
