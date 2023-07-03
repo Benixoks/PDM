@@ -1,12 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
-import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
 import 'package:provider/provider.dart';
 import '../common/hero.dart';
 import '../stores/item.store.dart';
-import '../stores/user.store.dart';
 import '../widgets/common/bottom_bar.widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,7 +42,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final userStore = Provider.of<UserStore>(context, listen: false);
     final itemStore = Provider.of<ItemStore>(context, listen: false);
 
     return Scaffold(

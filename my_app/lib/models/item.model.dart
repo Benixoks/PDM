@@ -16,24 +16,6 @@ class Item {
     required this.url,
   });
 
-  String? get imageUrl => null;
-
-  Item copyWith({
-    int? id,
-    double? price,
-    String? description,
-    String? tag,
-    String? url,
-  }) {
-    return Item(
-      id: id ?? this.id,
-      price: price ?? this.price,
-      description: description ?? this.description,
-      tag: tag ?? this.tag,
-      url: url ?? this.url,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
