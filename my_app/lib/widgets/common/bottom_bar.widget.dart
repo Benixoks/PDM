@@ -6,7 +6,7 @@ import '../../pages/login.page.dart';
 import '../../stores/user.store.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+  const BottomBar({Key? key}) : super(key: key);
 
   @override
   State<BottomBar> createState() => _BottomBarState();
@@ -34,11 +34,32 @@ class _BottomBarState extends State<BottomBar> {
         navigateToSelectedPage(configPage);
         break;
       case 2:
-        UserStore userStore = Provider.of<UserStore>(context, listen: false);
-        userStore.logOut(userStore.user.id);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const LoginPage()),
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Tem certeza que deseja sair?'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Cancelar'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    UserStore userStore = Provider.of<UserStore>(context, listen: false);
+                    userStore.logOut(userStore.user.id);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                    );
+                  },
+                  child: const Text('Sair'),
+                ),
+              ],
+            );
+          },
         );
         break;
     }
