@@ -27,26 +27,26 @@ abstract class ItemStoreBase with Store {
     return List.empty();
   }
 
-  @action
-  Future<Item> getItem(int itemId) async {
-    try {} catch (e) {}
-    return Item(
-        id: id, price: price, description: description, tag: tag, url: url);
-  }
+  // @action
+  // Future<Item> getItem(int itemId) async {
+  //   try {} catch (e) {}
+  //   return Item(
+  //       id: id, price: price, description: description, tag: tag, url: url);
+  // }
 
-  @action
-  Future<void> addItem(
-      String description, String price, String tag, String url) async {
-    try {} catch (e) {}
-  }
+  // @action
+  // Future<void> addItem(
+  //     String description, String price, String tag, String url) async {
+  //   try {} catch (e) {}
+  // }
 
-  @action
-  Future<void> removeItem(int itemId) async {
-    try {} catch (e) {}
-  }
+  // @action
+  // Future<void> removeItem(int itemId) async {
+  //   try {} catch (e) {}
+  // }
 
-  @action
-  Future<void> updateItem(int itemId) async {
-    try {} catch (e) {}
-  }
+  // @action
+  // Future<void> updateItem(int itemId) async {
+  //   try {} catch (e) {}
+  // }
 }
