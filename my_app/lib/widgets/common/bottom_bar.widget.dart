@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../pages/cart.page.dart';
 import '../../pages/config.page.dart';
 import '../../pages/home.page.dart';
 import '../../pages/login.page.dart';
@@ -15,6 +16,7 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   HomePage homePage = const HomePage();
   ConfigPage configPage = const ConfigPage();
+  CartPage cartPage = const CartPage();
 
   int _selectedIndex = 0;
 
@@ -31,7 +33,7 @@ class _BottomBarState extends State<BottomBar> {
         navigateToSelectedPage(homePage);
         break;
       case 1:
-        navigateToSelectedPage(configPage);
+        navigateToSelectedPage(cartPage);
         break;
       case 2:
         showDialog(
@@ -77,8 +79,8 @@ class _BottomBarState extends State<BottomBar> {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Configurações',
+          icon: Icon(Icons.shopping_cart),
+          label: 'Carrinho',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.logout),
