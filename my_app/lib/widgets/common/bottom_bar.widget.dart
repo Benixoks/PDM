@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../pages/cart.page.dart';
-import '../../pages/config.page.dart';
 import '../../pages/home.page.dart';
 import '../../pages/login.page.dart';
 import '../../stores/user.store.dart';
@@ -15,10 +14,10 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   HomePage homePage = const HomePage();
-  ConfigPage configPage = const ConfigPage();
+  //MyAccount minhaconta = const MyAccount();
   CartPage cartPage = const CartPage();
 
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
 
   void navigateToSelectedPage(Widget selectedWidget) {
     Navigator.push(
@@ -70,7 +69,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.black,
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
       items: const <BottomNavigationBarItem>[
@@ -87,7 +86,7 @@ class _BottomBarState extends State<BottomBar> {
           label: 'Sair',
         ),
       ],
-      selectedItemColor: Colors.greenAccent,
+      selectedItemColor: const Color.fromARGB(255, 189, 1, 1),
     );
   }
 }

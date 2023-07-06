@@ -67,10 +67,9 @@ class _RegisterPageState extends State<RegisterPage> {
     return Form(
         key: _formKey,
         child: Scaffold(
-          backgroundColor: Colors.blueGrey,
-          appBar: AppBar(backgroundColor: Colors.blueGrey),
-          resizeToAvoidBottomInset: false,
-          body: Padding(
+          backgroundColor: Colors.black,
+          appBar: AppBar(backgroundColor: Colors.black),
+            body: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
             child: Center(
@@ -78,15 +77,23 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Theme(
                   data: ThemeData(
                     textSelectionTheme: const TextSelectionThemeData(
-                        selectionColor: Colors.greenAccent),
-                  ),
+                        selectionColor: Colors.white
+                        ),
+                    checkboxTheme: CheckboxThemeData(
+                    checkColor: MaterialStateProperty.all(Colors.white),
+                    fillColor: MaterialStateProperty.all(Colors.white),
+                    overlayColor: MaterialStateProperty.all(Colors.white.withOpacity(0.12)),
+                    shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4.0),
+                    side: const BorderSide(color: Colors.white),
+                  ),),),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       //TextField NOME
                       AuthFormField(
                         nameController: _nameController,
-                        fieldName: 'name',
+                        fieldName: 'nome',
                         inputFormatters: [
                           FilteringTextInputFormatter.allow(
                             RegExp('[a-z A-Z]'),
@@ -94,10 +101,19 @@ class _RegisterPageState extends State<RegisterPage> {
                         ],
                         inputDecoration: InputDecoration(
                           icon: const Icon(Icons.person),
-                          iconColor: Theme.of(context).colorScheme.primary,
+                          iconColor: const Color.fromARGB(255, 189, 1, 1),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                             borderSide:
+                                  BorderSide(color: Colors.white),
+                            ),
                         ),
                       ),
 
+                      //TextField EMAIL
                       AuthFormField(
                         nameController: _emailController,
                         fieldName: 'email',
@@ -105,8 +121,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         inputDecoration: InputDecoration(
                           icon: const Icon(Icons.mail),
                           hintText: 'exemplo123@gmail.com',
-                          iconColor: Theme.of(context).colorScheme.primary,
-                        ),
+                          iconColor: const Color.fromARGB(255, 189, 1, 1),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                             borderSide:
+                                  BorderSide(color: Colors.white),
+                            ),
+                          ),
                       ),
 
                       //TextField PHONE
@@ -128,64 +152,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           prefixText: '+55 ',
                           prefixStyle: const TextStyle(color: Colors.white),
                           hintText: '(DD) 0 0000-0000',
-                          iconColor: Theme.of(context).colorScheme.primary,
+                          iconColor: const Color.fromARGB(255, 189, 1, 1),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
                         ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white),
+                            ),
+                          ),
                       ),
 
-                      // AuthFormField(
-                      //   nameController: _birthDateController,
-                      //   fieldName: 'birthDate',
-                      //   keyboardType: TextInputType.phone,
-                      //   inputFormatters: [
-                      //     FilteringTextInputFormatter.allow(
-                      //       RegExp('[0-9]'),
-                      //     ),
-                      //     MaskTextInputFormatter(
-                      //       mask: '(###) # ####-####',
-                      //       filter: {'#': RegExp('[0-9]')},
-                      //     ),
-                      //   ],
-                      //   inputDecoration: InputDecoration(
-                      //     icon: const Icon(Icons.person),
-                      //     hintText: 'dd/mm/aaaa',
-                      //     iconColor: Theme.of(context).colorScheme.primary,
-                      //   ),
-                      // ),
-
-                      // //TextField DATA DE NASCIMENTO
-                      // Padding(
-                      //   padding: const EdgeInsets.all(25.0),
-                      //   child: TextFormField(
-                      //     style: const TextStyle(color: Colors.white),
-                      //     cursorColor: Colors.white,
-                      //     controller: _birthDateController,
-                      //     validator: validations['birthDate'],
-                      //     autofocus: true,
-                      //     inputFormatters: [
-                      //       MaskTextInputFormatter(
-                      //         mask: '##/##/####',
-                      //         filter: {'#': RegExp(r'[0-9]')},
-                      //       ),
-                      //     ],
-                      //     maxLength: 10,
-                      //     keyboardType: TextInputType.datetime,
-                      //     decoration: InputDecoration(
-                      //       enabledBorder: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(12),
-                      //         borderSide: const BorderSide(color: Colors.white),
-                      //       ),
-                      //       focusedBorder: const OutlineInputBorder(
-                      //           borderSide:
-                      //               BorderSide(color: Colors.greenAccent)),
-                      //       labelStyle: const TextStyle(color: Colors.white),
-                      //       labelText: "Data de Nascimento",
-                      //       hintText: 'dd/mm/aaaa',
-                      //       hintStyle: const TextStyle(color: Colors.white),
-                      //       icon: const Icon(Icons.person),
-                      //       iconColor: Colors.greenAccent,
-                      //     ),
-                      //   ),
-                      // ),
 
                       //TextField CPF
                       Padding(
@@ -208,18 +186,19 @@ class _RegisterPageState extends State<RegisterPage> {
                           ],
                           decoration: InputDecoration(
                             icon: const Icon(Icons.person),
-                            iconColor: Colors.greenAccent,
+                            iconColor: const Color.fromARGB(255, 189, 1, 1),
                             labelText: 'CPF',
+                            labelStyle: const TextStyle(color: Color.fromARGB(255, 189, 1, 1)),
                             hintText: '000.000.000-00',
                             hintStyle: const TextStyle(color: Colors.white),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.white),
+                              borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
                             ),
                             focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.greenAccent)),
-                            labelStyle: const TextStyle(color: Colors.white),
+                             borderSide:
+                                  BorderSide(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
@@ -237,15 +216,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
                             ),
                             focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.greenAccent)),
-                            labelStyle: const TextStyle(color: Colors.white),
+                                borderSide: BorderSide(color: Colors.white)),
+                            labelStyle: const TextStyle(color: Color.fromARGB(255, 189, 1, 1)),
                             labelText: "Senha",
                             icon: const Icon(Icons.key),
-                            iconColor: Colors.greenAccent,
+                            iconColor: const Color.fromARGB(255, 189, 1, 1),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 mostraSenha
@@ -278,14 +256,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.greenAccent)),
-                            labelStyle: const TextStyle(color: Colors.white),
+                                    BorderSide(color: Colors.white)),
+                            labelStyle: const TextStyle(color: Color.fromARGB(255, 189, 1, 1)),
                             icon: const Icon(Icons.key),
-                            iconColor: Colors.greenAccent,
+                            iconColor: const Color.fromARGB(255, 189, 1, 1),
                             labelText: "Confirme sua Senha",
                           ),
                         ),
@@ -299,7 +277,13 @@ class _RegisterPageState extends State<RegisterPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Checkbox(
-                                activeColor: Colors.greenAccent,
+                                activeColor:const Color.fromARGB(255, 189, 1, 1),
+                                visualDensity: VisualDensity.compact,
+                                shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                side: const BorderSide(color: Colors.white),
+                                ),
+                                checkColor: Colors.white,
                                 value: aceitaTermo,
                                 onChanged: (checked) {
                                   print(checked);
@@ -321,12 +305,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       //Botão CADASTRE-SE
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.greenAccent,
+                          backgroundColor: const Color.fromARGB(255, 189, 1, 1),
                         ),
                         onPressed: onPressedRegister,
                         child: const Text(
                           'Cadastrar',
-                          selectionColor: Colors.greenAccent,
+                          selectionColor: Colors.white,
                         ),
                       ),
                     ],

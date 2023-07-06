@@ -17,9 +17,9 @@ class _LoginFormState extends State<LoginForm> {
   final _passwordController = TextEditingController();
 
   void onPressedLogin() async {
-    UserStore userStore = Provider.of<UserStore>(context, listen: false);
+    //UserStore userStore = Provider.of<UserStore>(context, listen: false);
 
-    await userStore.logIn(_emailController.text, _passwordController.text);
+    //await userStore.logIn(_emailController.text, _passwordController.text);
 
     if (context.mounted) Navigator.pushReplacementNamed(context, '/home');
   }
