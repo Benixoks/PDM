@@ -2,6 +2,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/common/validations.dart';
+import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/auth_form_field.widget.dart';
 import 'package:provider/provider.dart';
 import '../stores/user.store.dart';
@@ -100,6 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                         inputDecoration: InputDecoration(
+                          labelStyle: const TextStyle(color: Colors.white),
                           icon: const Icon(Icons.person),
                           iconColor: const Color.fromARGB(255, 189, 1, 1),
                           enabledBorder: OutlineInputBorder(
@@ -119,6 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         fieldName: 'email',
                         keyboardType: TextInputType.emailAddress,
                         inputDecoration: InputDecoration(
+                          labelStyle: const TextStyle(color: Colors.white),
                           icon: const Icon(Icons.mail),
                           hintText: 'exemplo123@gmail.com',
                           iconColor: const Color.fromARGB(255, 189, 1, 1),
@@ -148,6 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                         inputDecoration: InputDecoration(
+                          labelStyle: const TextStyle(color: Colors.white),
                           icon: const Icon(Icons.phone),
                           prefixText: '+55 ',
                           prefixStyle: const TextStyle(color: Colors.white),
@@ -188,7 +192,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             icon: const Icon(Icons.person),
                             iconColor: const Color.fromARGB(255, 189, 1, 1),
                             labelText: 'CPF',
-                            labelStyle: const TextStyle(color: Color.fromARGB(255, 189, 1, 1)),
+                            labelStyle: const TextStyle(color: Colors.white),
                             hintText: '000.000.000-00',
                             hintStyle: const TextStyle(color: Colors.white),
                             enabledBorder: OutlineInputBorder(
@@ -220,7 +224,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white)),
-                            labelStyle: const TextStyle(color: Color.fromARGB(255, 189, 1, 1)),
+                            labelStyle: const TextStyle(color: Colors.white),
                             labelText: "Senha",
                             icon: const Icon(Icons.key),
                             iconColor: const Color.fromARGB(255, 189, 1, 1),
@@ -261,7 +265,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.white)),
-                            labelStyle: const TextStyle(color: Color.fromARGB(255, 189, 1, 1)),
+                            labelStyle: const TextStyle(color: Colors.white),
                             icon: const Icon(Icons.key),
                             iconColor: const Color.fromARGB(255, 189, 1, 1),
                             labelText: "Confirme sua Senha",
@@ -313,6 +317,31 @@ class _RegisterPageState extends State<RegisterPage> {
                           selectionColor: Colors.white,
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Text('Já tem uma conta?',style: TextStyle(color: Colors.white),),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginPage(),
+                                ),
+                              );
+                            },
+                            child: RichText(
+                              text: const TextSpan(
+                                text: 'Faça Login!',
+                                style: TextStyle(color: Color.fromARGB(255, 189, 1, 1),),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),

@@ -17,9 +17,9 @@ class _LoginFormState extends State<LoginForm> {
   final _passwordController = TextEditingController();
 
   void onPressedLogin() async {
-    //UserStore userStore = Provider.of<UserStore>(context, listen: false);
+    UserStore userStore = Provider.of<UserStore>(context, listen: false);
 
-    //await userStore.logIn(_emailController.text, _passwordController.text);
+    await userStore.logIn(_emailController.text, _passwordController.text);
 
     if (context.mounted) Navigator.pushReplacementNamed(context, '/home');
   }
@@ -32,10 +32,16 @@ class _LoginFormState extends State<LoginForm> {
           nameController: _emailController,
           fieldName: 'email',
           keyboardType: TextInputType.emailAddress,
-          inputDecoration: const InputDecoration(
+          inputDecoration: InputDecoration(
             labelStyle: const TextStyle(color: Colors.white),
-            icon: Icon(Icons.mail),
+            icon: const Icon(Icons.mail),
             iconColor: Color.fromARGB(255, 189, 1, 1),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+              ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white)),
           ),
         ),
         AuthFormField(
@@ -46,6 +52,12 @@ class _LoginFormState extends State<LoginForm> {
             labelText: "Senha",
             icon: const Icon(Icons.key),
             iconColor: Color.fromARGB(255, 189, 1, 1),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white)),
             suffixIcon: IconButton(
               icon: Icon(
                 mostraSenha ? Icons.visibility : Icons.visibility_off,

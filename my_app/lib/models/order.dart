@@ -1,39 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
+import 'package:my_app/models/cart.dart';
 
-class Cart extends ChangeNotifier{
 
-//lista de itens para compra
+class Order extends ChangeNotifier{
+
 List<Item> itensShop = [
   Item(id: 1, price: 189.00, description: 'Camiseta DryFit', tag: 'Camiseta Flamengo Oficial', url: 'lib/assets/images/camisa1.jpg'),
   Item(id: 2, price: 249.00, description: 'Camiseta Preta, Vermelha e Dourada Oficial', tag: 'Camiseta Flamengo Oficial', url: 'lib/assets/images/camisa2.jpg'),
   Item(id: 3, price: 219.99, description: 'Camiseta Preta e Vermelha Oficial Copacabana Style', tag: 'Camiseta Flamengo Oficial', url: 'lib/assets/images/camisa3.jpg'),
   Item(id: 4, price: 99.00, description: 'Camiseta Rosa Masculina', tag: 'Camiseta Flamengo Oficial', url: 'lib/assets/images/camisa4.jpg'),
-];
-//lista de itens do usuário no carrinho
-List<Item> userCart = [];
+  ];
 
-//get lista de itens para venda
+List<Item> meusPedidos = [];
+
 List<Item> getItemList(){
   return itensShop;
 }
 
-//get cart
-List<Item> getUserCart(){
-  return userCart;
+//get order
+List<Item> getUserOrders(){
+  return meusPedidos;
 }
 
-//add itens no cart
-
-void addItemToCart(Item itens){
-  userCart.add(itens);
+//add itens no Meus Pedidos
+int index = 0;
+void addUserCart(userCart){
+  meusPedidos.add(Cart() as Item );
+  index++;
   notifyListeners();
 }
 
-//remove itens do cart
+//remove itens do Meus Pedido
 
-void removeItemFromCart(Item itens){
-  userCart.remove(itens);
+void removeUserCart(userCart){
+  meusPedidos.remove(Cart() as Item);
   notifyListeners();
 }
 

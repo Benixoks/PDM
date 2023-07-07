@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/models/cart.dart';
+import 'package:my_app/models/order.dart';
 import 'package:my_app/pages/home.page.dart';
 import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/pages/register.page.dart';
@@ -24,18 +25,23 @@ class MyApp extends StatelessWidget {
           ),
           Provider(
             create: (context) => ItemStore(),
+            
           ),
         ],
-        child: ChangeNotifierProvider(
-          create: (context) => Cart(),
-          builder: (context, child) => MaterialApp(
-            routes: {
-              '/login': (context) => const LoginPage(),
-              '/home': (context) => const HomePage(),
-              '/register': (context) => const RegisterPage()
+        child: MultiProvider(
+          providers:[
+            ChangeNotifierProvider(
+              create: (context) => Order(),),
+            ChangeNotifierProvider(
+              create: (context) => Cart(), 
+              builder: (context, child) => MaterialApp(
+              routes: {
+                '/login': (context) => const LoginPage(),
+                '/home': (context) => const HomePage(),
+                '/register': (context) => const RegisterPage()
             },
-            darkTheme: ThemeData(
-              brightness: Brightness.dark,
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
               primaryColor: Colors.red,
               scaffoldBackgroundColor: Colors.black,
               cardColor: Colors.black,
@@ -48,6 +54,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: const LoginPage(),
           ),
+        )]
         ));
   }
 }

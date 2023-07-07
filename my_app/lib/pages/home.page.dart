@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
+import 'package:my_app/pages/cart.page.dart';
 import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     Item item = value.getItemList()[index];
                     // final item = itens[index];
-                    return  ItemCard(item: item);
+                    return ItemCard(item: item);
                     //Padding(
                     //   padding: const EdgeInsets.all(8.0),
                     //   child: ItemCard(item: item),
@@ -73,6 +74,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          foregroundColor: Colors.white,
+          backgroundColor: const Color.fromARGB(255, 189, 1, 1),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CartPage(cartItems: [],)),
+            );
+          },
+          child: const Icon(Icons.shopping_cart),
         ),
       ),
     );
