@@ -2,6 +2,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/common/validations.dart';
+import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/auth_form_field.widget.dart';
 import 'package:provider/provider.dart';
 import '../stores/user.store.dart';
@@ -69,6 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(backgroundColor: Colors.black),
+
           resizeToAvoidBottomInset: false,
           body: Padding(
             padding:
@@ -78,35 +80,62 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Theme(
                   data: ThemeData(
                     textSelectionTheme: const TextSelectionThemeData(
-                        selectionColor: Colors.greenAccent),
-                  ),
+                        selectionColor: Colors.white
+                        ),
+                    checkboxTheme: CheckboxThemeData(
+                    checkColor: MaterialStateProperty.all(Colors.white),
+                    fillColor: MaterialStateProperty.all(Colors.white),
+                    overlayColor: MaterialStateProperty.all(Colors.white.withOpacity(0.12)),
+                    shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4.0),
+                    side: const BorderSide(color: Colors.white),
+                  ),),),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       //TextField NOME
                       AuthFormField(
                         nameController: _nameController,
-                        fieldName: 'name',
+                        fieldName: 'nome',
                         inputFormatters: [
                           FilteringTextInputFormatter.allow(
                             RegExp('[a-z A-Z]'),
                           ),
                         ],
                         inputDecoration: InputDecoration(
+                          labelStyle: const TextStyle(color: Colors.white),
                           icon: const Icon(Icons.person),
-                          iconColor: Theme.of(context).colorScheme.primary,
+                          iconColor: const Color.fromARGB(255, 189, 1, 1),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                             borderSide:
+                                  BorderSide(color: Colors.white),
+                            ),
                         ),
                       ),
 
+                      //TextField EMAIL
                       AuthFormField(
                         nameController: _emailController,
                         fieldName: 'email',
                         keyboardType: TextInputType.emailAddress,
                         inputDecoration: InputDecoration(
+                          labelStyle: const TextStyle(color: Colors.white),
                           icon: const Icon(Icons.mail),
                           hintText: 'exemplo123@gmail.com',
-                          iconColor: Theme.of(context).colorScheme.primary,
-                        ),
+                          iconColor: const Color.fromARGB(255, 189, 1, 1),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                             borderSide:
+                                  BorderSide(color: Colors.white),
+                            ),
+                          ),
                       ),
 
                       //TextField PHONE
@@ -124,24 +153,59 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                         inputDecoration: InputDecoration(
+                          labelStyle: const TextStyle(color: Colors.white),
                           icon: const Icon(Icons.phone),
                           prefixText: '+55 ',
                           prefixStyle: const TextStyle(color: Colors.white),
                           hintText: '(DD) 0 0000-0000',
-                          iconColor: Theme.of(context).colorScheme.primary,
+                          iconColor: const Color.fromARGB(255, 189, 1, 1),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
                         ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white),
+                            ),
+                          ),
                       ),
 
-                      // CPF
-                      AuthFormField(
-                        nameController: _cpfController,
-                        fieldName: 'cpf',
-                        inputFormatters: [
-                          MaskTextInputFormatter(
-                            mask: '###.###.###-##',
-                            filter: {
-                              '#': RegExp('[0-9]'),
-                            },
+
+                      //TextField CPF
+                      Padding(
+                        padding: const EdgeInsets.all(25.0),
+                        child: TextFormField(
+                          style: const TextStyle(color: Colors.white),
+                          cursorColor: Colors.white,
+                          controller: _cpfController,
+                          validator: validations['cpf'],
+                          autofocus: true,
+                          maxLength: 14,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            MaskTextInputFormatter(
+                              mask: '###.###.###-##',
+                              filter: {
+                                '#': RegExp('[0-9]'),
+                              },
+                            ),
+                          ],
+                          decoration: InputDecoration(
+                            icon: const Icon(Icons.person),
+                            iconColor: const Color.fromARGB(255, 189, 1, 1),
+                            labelText: 'CPF',
+                            labelStyle: const TextStyle(color: Colors.white),
+                            hintText: '000.000.000-00',
+                            hintStyle: const TextStyle(color: Colors.white),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                             borderSide:
+                                  BorderSide(color: Colors.white),
+                            ),
+
                           ),
                         ],
                         inputDecoration: InputDecoration(
@@ -167,15 +231,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
                             ),
                             focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.greenAccent)),
+                                borderSide: BorderSide(color: Colors.white)),
                             labelStyle: const TextStyle(color: Colors.white),
                             labelText: "Senha",
                             icon: const Icon(Icons.key),
-                            iconColor: Colors.greenAccent,
+                            iconColor: const Color.fromARGB(255, 189, 1, 1),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 mostraSenha
@@ -208,14 +271,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.white),
+                              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.greenAccent)),
+                                    BorderSide(color: Colors.white)),
                             labelStyle: const TextStyle(color: Colors.white),
                             icon: const Icon(Icons.key),
-                            iconColor: Colors.greenAccent,
+                            iconColor: const Color.fromARGB(255, 189, 1, 1),
                             labelText: "Confirme sua Senha",
                           ),
                         ),
@@ -229,7 +292,13 @@ class _RegisterPageState extends State<RegisterPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Checkbox(
-                                activeColor: Colors.greenAccent,
+                                activeColor:const Color.fromARGB(255, 189, 1, 1),
+                                visualDensity: VisualDensity.compact,
+                                shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                side: const BorderSide(color: Colors.white),
+                                ),
+                                checkColor: Colors.white,
                                 value: aceitaTermo,
                                 onChanged: (checked) {
                                   print(checked);
@@ -251,14 +320,39 @@ class _RegisterPageState extends State<RegisterPage> {
                       //Botão CADASTRE-SE
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.greenAccent,
+                          backgroundColor: const Color.fromARGB(255, 189, 1, 1),
                         ),
                         onPressed: onPressedRegister,
                         child: const Text(
                           'Cadastrar',
-                          selectionColor: Colors.greenAccent,
+                          selectionColor: Colors.white,
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Text('Já tem uma conta?',style: TextStyle(color: Colors.white),),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginPage(),
+                                ),
+                              );
+                            },
+                            child: RichText(
+                              text: const TextSpan(
+                                text: 'Faça Login!',
+                                style: TextStyle(color: Color.fromARGB(255, 189, 1, 1),),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),

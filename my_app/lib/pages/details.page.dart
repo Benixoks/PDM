@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/pages/cart.page.dart';
 import 'package:provider/provider.dart';
-
 import '../models/item.model.dart';
 import '../models/cart.dart';
+import 'conta.page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Item item;
@@ -21,19 +21,20 @@ class _DetailsPageState extends State<DetailsPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Item adicionado com sucesso!'),
+        title: const Text('Item adicionado com sucesso!'),
         content: TextButton(
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CartPage()),
+              MaterialPageRoute(builder: (context) => const CartPage(cartItems: [],)),
             );
           },
-          child: Text('Confira seu carrinho'),
           style: TextButton.styleFrom(
             foregroundColor: Colors.white,
-            backgroundColor: Color.fromARGB(255, 189, 1, 1),
-          ),
+
+            backgroundColor: const Color.fromARGB(255, 189, 1, 1),),
+             child:  const Text('Confira seu carrinho'),
+
         ),
       ),
     );
@@ -88,30 +89,36 @@ class _DetailsPageState extends State<DetailsPage> {
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromARGB(255, 189, 1, 1),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
+                      
+                      backgroundColor: const Color.fromARGB(255, 189, 1, 1),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
+                      
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
-                    child: Text('Voltar'),
+                    child: const Text('Voltar'),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   ElevatedButton(
                     onPressed: () {
                       addToCart(widget.item);
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color.fromARGB(255, 189, 1, 1),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
+                      
+                      backgroundColor: const Color.fromARGB(255, 189, 1, 1),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
+                      
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
-                    child: Text('Adicionar ao Carrinho'),
+                    child: const Text('Adicionar ao Carrinho'),
                   ),
                 ],
               ),

@@ -33,42 +33,38 @@ class _LoginFormState extends State<LoginForm> {
           nameController: _emailController,
           fieldName: 'email',
           keyboardType: TextInputType.emailAddress,
-          inputDecoration: const InputDecoration(
+          inputDecoration: InputDecoration(
             labelStyle: const TextStyle(color: Colors.white),
-            icon: Icon(Icons.mail),
+            icon: const Icon(Icons.mail),
             iconColor: Color.fromARGB(255, 189, 1, 1),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+              ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white)),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: TextFormField(
-            style: const TextStyle(color: Colors.white),
-            cursorColor: Colors.white,
-            controller: _passwordController,
-            validator: validations['password'],
-            autofocus: true,
-            obscureText: !mostraSenha,
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: Colors.white),
-              ),
-              focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.greenAccent)),
-              labelStyle: const TextStyle(color: Colors.white),
-              labelText: "Senha",
-              icon: const Icon(Icons.key),
-              iconColor: Colors.greenAccent,
-              suffixIcon: IconButton(
-                icon: Icon(
-                  mostraSenha ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  setState(() {
-                    mostraSenha = !mostraSenha;
-                  });
-                },
+
+        AuthFormField(
+          nameController: _passwordController,
+          fieldName: 'password',
+          inputDecoration: InputDecoration(
+            labelStyle: const TextStyle(color: Colors.white),
+            labelText: "Senha",
+            icon: const Icon(Icons.key),
+            iconColor: Color.fromARGB(255, 189, 1, 1),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white)),
+            suffixIcon: IconButton(
+              icon: Icon(
+                mostraSenha ? Icons.visibility : Icons.visibility_off,
+                color: Colors.white,
+
               ),
             ),
           ),

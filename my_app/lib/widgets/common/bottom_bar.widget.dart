@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/pages/conta.page.dart';
 import 'package:provider/provider.dart';
 import '../../pages/cart.page.dart';
-import '../../pages/config.page.dart';
 import '../../pages/home.page.dart';
 import '../../pages/login.page.dart';
 import '../../stores/user.store.dart';
@@ -15,10 +15,10 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   HomePage homePage = const HomePage();
-  ConfigPage configPage = const ConfigPage();
-  CartPage cartPage = const CartPage();
+  MinhaContaPage minhaConta = const MinhaContaPage();
+  CartPage cartPage = const CartPage(cartItems: [],);
 
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
 
   void navigateToSelectedPage(Widget selectedWidget) {
     Navigator.push(
@@ -33,7 +33,7 @@ class _BottomBarState extends State<BottomBar> {
         navigateToSelectedPage(homePage);
         break;
       case 1:
-        navigateToSelectedPage(cartPage);
+        navigateToSelectedPage(minhaConta);
         break;
       case 2:
         showDialog(
@@ -70,7 +70,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.black,
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
       items: const <BottomNavigationBarItem>[
@@ -79,15 +79,15 @@ class _BottomBarState extends State<BottomBar> {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart),
-          label: 'Carrinho',
+          icon: Icon(Icons.person),
+          label: 'Minha Conta',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.logout),
           label: 'Sair',
         ),
       ],
-      selectedItemColor: Colors.greenAccent,
+      selectedItemColor: const Color.fromARGB(255, 189, 1, 1),
     );
   }
 }
