@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/widgets/auth_form_field.widget.dart';
 import 'package:provider/provider.dart';
-
-import '../../common/validations.dart';
 import '../../stores/user.store.dart';
 
 class LoginForm extends StatefulWidget {
@@ -39,13 +37,13 @@ class _LoginFormState extends State<LoginForm> {
             iconColor: Color.fromARGB(255, 189, 1, 1),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
-              ),
+              borderSide:
+                  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+            ),
             focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white)),
+                borderSide: BorderSide(color: Colors.white)),
           ),
         ),
-
         AuthFormField(
           nameController: _passwordController,
           fieldName: 'password',
@@ -56,16 +54,17 @@ class _LoginFormState extends State<LoginForm> {
             iconColor: Color.fromARGB(255, 189, 1, 1),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+              borderSide:
+                  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
             ),
             focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white)),
+                borderSide: BorderSide(color: Colors.white)),
             suffixIcon: IconButton(
               icon: Icon(
                 mostraSenha ? Icons.visibility : Icons.visibility_off,
                 color: Colors.white,
-
               ),
+              onPressed: () {},
             ),
           ),
         ),

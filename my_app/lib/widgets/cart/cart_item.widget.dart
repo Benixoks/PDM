@@ -23,7 +23,7 @@ class _CartItemState extends State<CartItem> {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       margin: const EdgeInsets.only(bottom: 10),
       child: ListTile(
-        leading: Image.asset(widget.item.image),
+        leading: Image.network(widget.item.image),
         title: Text(widget.item.tag),
         subtitle: Text('R\$' + widget.item.price.toStringAsFixed(2)),
         trailing: IconButton(

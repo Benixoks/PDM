@@ -70,7 +70,6 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(backgroundColor: Colors.black),
-
           resizeToAvoidBottomInset: false,
           body: Padding(
             padding:
@@ -80,16 +79,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Theme(
                   data: ThemeData(
                     textSelectionTheme: const TextSelectionThemeData(
-                        selectionColor: Colors.white
-                        ),
+                        selectionColor: Colors.white),
                     checkboxTheme: CheckboxThemeData(
-                    checkColor: MaterialStateProperty.all(Colors.white),
-                    fillColor: MaterialStateProperty.all(Colors.white),
-                    overlayColor: MaterialStateProperty.all(Colors.white.withOpacity(0.12)),
-                    shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0),
-                    side: const BorderSide(color: Colors.white),
-                  ),),),
+                      checkColor: MaterialStateProperty.all(Colors.white),
+                      fillColor: MaterialStateProperty.all(Colors.white),
+                      overlayColor: MaterialStateProperty.all(
+                          Colors.white.withOpacity(0.12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                        side: const BorderSide(color: Colors.white),
+                      ),
+                    ),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -108,12 +109,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           iconColor: const Color.fromARGB(255, 189, 1, 1),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
-                            borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                             borderSide:
-                                  BorderSide(color: Colors.white),
-                            ),
+                            borderSide: const BorderSide(
+                                color: Color.fromARGB(255, 189, 1, 1)),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
                         ),
                       ),
 
@@ -127,15 +128,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           icon: const Icon(Icons.mail),
                           hintText: 'exemplo123@gmail.com',
                           iconColor: const Color.fromARGB(255, 189, 1, 1),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                             borderSide:
-                                  BorderSide(color: Colors.white),
-                            ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                                color: Color.fromARGB(255, 189, 1, 1)),
                           ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
                       ),
 
                       //TextField PHONE
@@ -161,15 +162,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           iconColor: const Color.fromARGB(255, 189, 1, 1),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
-                            borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
-                        ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.white),
-                            ),
+                            borderSide: const BorderSide(
+                                color: Color.fromARGB(255, 189, 1, 1)),
                           ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
                       ),
-
 
                       //TextField CPF
                       Padding(
@@ -199,25 +199,15 @@ class _RegisterPageState extends State<RegisterPage> {
                             hintStyle: const TextStyle(color: Colors.white),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide:  const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 189, 1, 1)),
                             ),
                             focusedBorder: const OutlineInputBorder(
-                             borderSide:
-                                  BorderSide(color: Colors.white),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
-
                           ),
-                        ],
-                        inputDecoration: InputDecoration(
-                          icon: const Icon(Icons.person),
-                          labelText: 'CPF',
-                          hintText: '000.000.000-00',
-                          hintStyle: const TextStyle(color: Colors.white),
-                          prefixStyle: const TextStyle(color: Colors.white),
-                          iconColor: Theme.of(context).colorScheme.primary,
                         ),
                       ),
-
                       //TextField SENHA
                       Padding(
                         padding: const EdgeInsets.all(25.0),
@@ -231,7 +221,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 189, 1, 1)),
                             ),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white)),
@@ -271,11 +262,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Color.fromARGB(255, 189, 1, 1)),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 189, 1, 1)),
                             ),
                             focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.white)),
+                                borderSide: BorderSide(color: Colors.white)),
                             labelStyle: const TextStyle(color: Colors.white),
                             icon: const Icon(Icons.key),
                             iconColor: const Color.fromARGB(255, 189, 1, 1),
@@ -292,11 +283,12 @@ class _RegisterPageState extends State<RegisterPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Checkbox(
-                                activeColor:const Color.fromARGB(255, 189, 1, 1),
+                                activeColor:
+                                    const Color.fromARGB(255, 189, 1, 1),
                                 visualDensity: VisualDensity.compact,
                                 shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                side: const BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(4),
+                                  side: const BorderSide(color: Colors.white),
                                 ),
                                 checkColor: Colors.white,
                                 value: aceitaTermo,
@@ -333,7 +325,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           const Padding(
                             padding: EdgeInsets.all(15.0),
-                            child: Text('Já tem uma conta?',style: TextStyle(color: Colors.white),),
+                            child: Text(
+                              'Já tem uma conta?',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                           TextButton(
                             onPressed: () {
@@ -347,7 +342,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: RichText(
                               text: const TextSpan(
                                 text: 'Faça Login!',
-                                style: TextStyle(color: Color.fromARGB(255, 189, 1, 1),),
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 189, 1, 1),
+                                ),
                               ),
                             ),
                           ),

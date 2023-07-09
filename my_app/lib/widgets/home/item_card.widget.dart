@@ -44,8 +44,8 @@ class ItemCard extends StatelessWidget {
           child: Column(
             children: [
               Center(
-                  child: Image(
-                image: AssetImage(item.image),
+                  child: Image.network(
+                item.image,
                 width: double.infinity,
                 height: 230,
               )),

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 class ItemService {
-  String baseUrl = 'https://localhost:52741/item/list';
+  String baseUrl = 'https://localhost:7108/item/list';
   Map<String, String> baseHeaders = {
     'Content-Type': 'application/json',
     'accept': 'text/plain'

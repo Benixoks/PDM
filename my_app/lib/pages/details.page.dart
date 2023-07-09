@@ -3,7 +3,6 @@ import 'package:my_app/pages/cart.page.dart';
 import 'package:provider/provider.dart';
 import '../models/item.model.dart';
 import '../models/cart.dart';
-import 'conta.page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Item item;
@@ -26,15 +25,17 @@ class _DetailsPageState extends State<DetailsPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const CartPage(cartItems: [],)),
+              MaterialPageRoute(
+                  builder: (context) => const CartPage(
+                        cartItems: [],
+                      )),
             );
           },
           style: TextButton.styleFrom(
             foregroundColor: Colors.white,
-
-            backgroundColor: const Color.fromARGB(255, 189, 1, 1),),
-             child:  const Text('Confira seu carrinho'),
-
+            backgroundColor: const Color.fromARGB(255, 189, 1, 1),
+          ),
+          child: const Text('Confira seu carrinho'),
         ),
       ),
     );
@@ -55,9 +56,9 @@ class _DetailsPageState extends State<DetailsPage> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image(
+              child: Image.network(
+                widget.item.image,
                 fit: BoxFit.cover,
-                image: AssetImage(widget.item.image),
                 width: double.infinity,
               ),
             ),
@@ -89,12 +90,9 @@ class _DetailsPageState extends State<DetailsPage> {
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
-
-                      
                       backgroundColor: const Color.fromARGB(255, 189, 1, 1),
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-
-                      
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
@@ -108,12 +106,9 @@ class _DetailsPageState extends State<DetailsPage> {
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-
-                      
                       backgroundColor: const Color.fromARGB(255, 189, 1, 1),
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-
-                      
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),

@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
 import 'package:my_app/pages/cart.page.dart';
-import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
 import 'package:provider/provider.dart';
 import '../models/cart.dart';
@@ -35,6 +34,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final itemStore = Provider.of<ItemStore>(context, listen: false);
+
     return Consumer<Cart>(
       builder: (context, value, child) => Scaffold(
         bottomNavigationBar: const BottomBar(),
@@ -44,9 +44,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: min(4, itemStore.items.length),
+                  itemCount: min(9, itemStore.items.length),
                   itemBuilder: (context, index) {
-                    Item item = value.getItemList()[index];
+                    Item item = itemStore.items[index];
                     return ItemCard(item: item);
                   },
                 ),
@@ -60,7 +60,10 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const CartPage(cartItems: [],)),
+              MaterialPageRoute(
+                  builder: (context) => const CartPage(
+                        cartItems: [],
+                      )),
             );
           },
           child: const Icon(Icons.shopping_cart),
