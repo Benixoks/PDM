@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/widgets/auth_form_field.widget.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/validations.dart';
 import '../../stores/user.store.dart';
 
 class LoginForm extends StatefulWidget {
@@ -44,6 +45,7 @@ class _LoginFormState extends State<LoginForm> {
               borderSide: BorderSide(color: Colors.white)),
           ),
         ),
+
         AuthFormField(
           nameController: _passwordController,
           fieldName: 'password',
@@ -62,12 +64,8 @@ class _LoginFormState extends State<LoginForm> {
               icon: Icon(
                 mostraSenha ? Icons.visibility : Icons.visibility_off,
                 color: Colors.white,
+
               ),
-              onPressed: () {
-                setState(() {
-                  mostraSenha = !mostraSenha;
-                });
-              },
             ),
           ),
         ),
@@ -78,7 +76,12 @@ class _LoginFormState extends State<LoginForm> {
               backgroundColor: Color.fromARGB(255, 189, 1, 1),
             ),
             onPressed: onPressedLogin,
-            child: const Text('Entrar',style: TextStyle(color: Colors.white,),),
+            child: const Text(
+              'Entrar',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
         )
       ],

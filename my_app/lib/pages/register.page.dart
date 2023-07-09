@@ -70,7 +70,9 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(backgroundColor: Colors.black),
-            body: Padding(
+
+          resizeToAvoidBottomInset: false,
+          body: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
             child: Center(
@@ -203,7 +205,16 @@ class _RegisterPageState extends State<RegisterPage> {
                              borderSide:
                                   BorderSide(color: Colors.white),
                             ),
+
                           ),
+                        ],
+                        inputDecoration: InputDecoration(
+                          icon: const Icon(Icons.person),
+                          labelText: 'CPF',
+                          hintText: '000.000.000-00',
+                          hintStyle: const TextStyle(color: Colors.white),
+                          prefixStyle: const TextStyle(color: Colors.white),
+                          iconColor: Theme.of(context).colorScheme.primary,
                         ),
                       ),
 

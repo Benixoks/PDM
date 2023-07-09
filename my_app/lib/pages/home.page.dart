@@ -5,10 +5,8 @@ import 'package:my_app/pages/cart.page.dart';
 import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
 import 'package:provider/provider.dart';
-import '../common/hero.dart';
 import '../models/cart.dart';
 import '../stores/item.store.dart';
-import '../stores/user.store.dart';
 import '../widgets/common/bottom_bar.widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,21 +20,9 @@ class _HomePageState extends State<HomePage> {
   List<Item> itens = [];
 
   Future<void> fetchItens() async {
-    await Future.delayed(const Duration(seconds: 1));
-    //ItemStore.listItens
+    final itemStore = Provider.of<ItemStore>(context, listen: false);
 
-    itens = List.generate(
-      20,
-      (index) => Item(
-        id: 1,
-        price: 189.9,
-        description: "Camiseta do Flamengo feita com tecnologia de materiais. Composta pela nano-tecnologia DryFit feita para atletas de alta performance.",
-        tag: "Camiseta Flamengo Oficial",
-        url: 'lib/assets/images/camisa1.jpg',
-      ),
-    );
-
-    // itens = value.getItemList()[index];
+    itemStore.listItems();
     setState(() {});
   }
 
@@ -48,9 +34,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final userStore = Provider.of<UserStore>(context, listen: false);
     final itemStore = Provider.of<ItemStore>(context, listen: false);
-
     return Consumer<Cart>(
       builder: (context, value, child) => Scaffold(
         bottomNavigationBar: const BottomBar(),
@@ -60,15 +44,10 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: min(4, itens.length),
+                  itemCount: min(4, itemStore.items.length),
                   itemBuilder: (context, index) {
                     Item item = value.getItemList()[index];
-                    // final item = itens[index];
                     return ItemCard(item: item);
-                    //Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: ItemCard(item: item),
-                    //);
                   },
                 ),
               ),
