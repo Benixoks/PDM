@@ -65,7 +65,7 @@ class _LoginFormState extends State<LoginForm> {
                 mostraSenha ? Icons.visibility : Icons.visibility_off,
                 color: Colors.white,
 
-              ),
+              ), onPressed: () {  },
             ),
           ),
         ),

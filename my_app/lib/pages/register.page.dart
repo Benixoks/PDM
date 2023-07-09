@@ -205,18 +205,8 @@ class _RegisterPageState extends State<RegisterPage> {
                              borderSide:
                                   BorderSide(color: Colors.white),
                             ),
-
-                          ),
-                        ],
-                        inputDecoration: InputDecoration(
-                          icon: const Icon(Icons.person),
-                          labelText: 'CPF',
-                          hintText: '000.000.000-00',
-                          hintStyle: const TextStyle(color: Colors.white),
-                          prefixStyle: const TextStyle(color: Colors.white),
-                          iconColor: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
+                          ),                                                
+                      )),
 
                       //TextField SENHA
                       Padding(
