@@ -67,8 +67,8 @@ class _RegisterPageState extends State<RegisterPage> {
     return Form(
         key: _formKey,
         child: Scaffold(
-          backgroundColor: Colors.blueGrey,
-          appBar: AppBar(backgroundColor: Colors.blueGrey),
+          backgroundColor: Colors.black,
+          appBar: AppBar(backgroundColor: Colors.black),
           resizeToAvoidBottomInset: false,
           body: Padding(
             padding:
@@ -132,95 +132,25 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
 
-                      // AuthFormField(
-                      //   nameController: _birthDateController,
-                      //   fieldName: 'birthDate',
-                      //   keyboardType: TextInputType.phone,
-                      //   inputFormatters: [
-                      //     FilteringTextInputFormatter.allow(
-                      //       RegExp('[0-9]'),
-                      //     ),
-                      //     MaskTextInputFormatter(
-                      //       mask: '(###) # ####-####',
-                      //       filter: {'#': RegExp('[0-9]')},
-                      //     ),
-                      //   ],
-                      //   inputDecoration: InputDecoration(
-                      //     icon: const Icon(Icons.person),
-                      //     hintText: 'dd/mm/aaaa',
-                      //     iconColor: Theme.of(context).colorScheme.primary,
-                      //   ),
-                      // ),
-
-                      // //TextField DATA DE NASCIMENTO
-                      // Padding(
-                      //   padding: const EdgeInsets.all(25.0),
-                      //   child: TextFormField(
-                      //     style: const TextStyle(color: Colors.white),
-                      //     cursorColor: Colors.white,
-                      //     controller: _birthDateController,
-                      //     validator: validations['birthDate'],
-                      //     autofocus: true,
-                      //     inputFormatters: [
-                      //       MaskTextInputFormatter(
-                      //         mask: '##/##/####',
-                      //         filter: {'#': RegExp(r'[0-9]')},
-                      //       ),
-                      //     ],
-                      //     maxLength: 10,
-                      //     keyboardType: TextInputType.datetime,
-                      //     decoration: InputDecoration(
-                      //       enabledBorder: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(12),
-                      //         borderSide: const BorderSide(color: Colors.white),
-                      //       ),
-                      //       focusedBorder: const OutlineInputBorder(
-                      //           borderSide:
-                      //               BorderSide(color: Colors.greenAccent)),
-                      //       labelStyle: const TextStyle(color: Colors.white),
-                      //       labelText: "Data de Nascimento",
-                      //       hintText: 'dd/mm/aaaa',
-                      //       hintStyle: const TextStyle(color: Colors.white),
-                      //       icon: const Icon(Icons.person),
-                      //       iconColor: Colors.greenAccent,
-                      //     ),
-                      //   ),
-                      // ),
-
-                      //TextField CPF
-                      Padding(
-                        padding: const EdgeInsets.all(25.0),
-                        child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
-                          cursorColor: Colors.white,
-                          controller: _cpfController,
-                          validator: validations['cpf'],
-                          autofocus: true,
-                          maxLength: 14,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            MaskTextInputFormatter(
-                              mask: '###.###.###-##',
-                              filter: {
-                                '#': RegExp('[0-9]'),
-                              },
-                            ),
-                          ],
-                          decoration: InputDecoration(
-                            icon: const Icon(Icons.person),
-                            iconColor: Colors.greenAccent,
-                            labelText: 'CPF',
-                            hintText: '000.000.000-00',
-                            hintStyle: const TextStyle(color: Colors.white),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Colors.white),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.greenAccent)),
-                            labelStyle: const TextStyle(color: Colors.white),
+                      // CPF
+                      AuthFormField(
+                        nameController: _cpfController,
+                        fieldName: 'cpf',
+                        inputFormatters: [
+                          MaskTextInputFormatter(
+                            mask: '###.###.###-##',
+                            filter: {
+                              '#': RegExp('[0-9]'),
+                            },
                           ),
+                        ],
+                        inputDecoration: InputDecoration(
+                          icon: const Icon(Icons.person),
+                          labelText: 'CPF',
+                          hintText: '000.000.000-00',
+                          hintStyle: const TextStyle(color: Colors.white),
+                          prefixStyle: const TextStyle(color: Colors.white),
+                          iconColor: Theme.of(context).colorScheme.primary,
                         ),
                       ),
 

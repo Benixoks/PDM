@@ -15,8 +15,6 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  //SizeLabel? selectedSize;
-
   void addToCart(Item item) {
     final cart = Provider.of<Cart>(context, listen: false);
     cart.addItemToCart(widget.item);
@@ -34,7 +32,8 @@ class _DetailsPageState extends State<DetailsPage> {
           child: Text('Confira seu carrinho'),
           style: TextButton.styleFrom(
             foregroundColor: Colors.white,
-            backgroundColor: Color.fromARGB(255, 189, 1, 1),),
+            backgroundColor: Color.fromARGB(255, 189, 1, 1),
+          ),
         ),
       ),
     );
@@ -44,7 +43,6 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     final uniqueTag = 'item.detail.${widget.item.id}';
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -58,7 +56,7 @@ class _DetailsPageState extends State<DetailsPage> {
               borderRadius: BorderRadius.circular(15),
               child: Image(
                 fit: BoxFit.cover,
-                image: AssetImage(widget.item.url),
+                image: AssetImage(widget.item.image),
                 width: double.infinity,
               ),
             ),
@@ -71,21 +69,6 @@ class _DetailsPageState extends State<DetailsPage> {
                 Text(widget.item.price.toStringAsFixed(2)),
               ],
             ),
-            // Row(
-            //   children: <Widget>[
-            //     DropdownMenu<SizeLabel>(
-            //       initialSelection: 1,
-            //       controller: SizeController,
-            //       label: const Text('Tamanho'),
-            //       dropdownMenuEntries: SizeEntries,
-            //       onSelected: (SizeLabel? size) {
-            //         setState(() {
-            //           selectedSize = size;
-            //         });
-            //       },
-            //     ),
-            //   ],
-            // ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -106,7 +89,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Color.fromARGB(255, 189, 1, 1),
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
@@ -121,7 +105,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Color.fromARGB(255, 189, 1, 1),
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),

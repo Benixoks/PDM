@@ -70,15 +70,15 @@ InputDecoration baseInputDecoration(BuildContext context, String label) {
     labelText: label.capitalize(),
     enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(
+        borderSide: const BorderSide(
           color: Colors.white,
         )),
-    focusedBorder: OutlineInputBorder(
+    focusedBorder: const OutlineInputBorder(
       borderSide: BorderSide(
         color: Color.fromARGB(255, 189, 1, 1),
       ),
     ),
-    labelStyle: TextStyle(
+    labelStyle: const TextStyle(
       color: Color.fromARGB(255, 189, 1, 1),
     ),
     contentPadding: const EdgeInsets.symmetric(

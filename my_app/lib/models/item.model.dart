@@ -6,14 +6,14 @@ class Item {
   final double price;
   final String description;
   final String tag;
-  final String url;
+  final String image;
 
   Item({
     required this.id,
     required this.price,
     required this.description,
     required this.tag,
-    required this.url,
+    required this.image,
   });
 
   Map<String, dynamic> toMap() {
@@ -22,7 +22,7 @@ class Item {
       'price': price,
       'description': description,
       'tag': tag,
-      'url': url,
+      'image': image,
     };
   }
 
@@ -32,7 +32,7 @@ class Item {
       price: map['price'] as double,
       description: map['description'] as String,
       tag: map['tag'] as String,
-      url: map['url'] as String,
+      image: map['image'] as String,
     );
   }
 
@@ -43,7 +43,7 @@ class Item {
 
   @override
   String toString() {
-    return 'Item(id: $id, price: $price, description: $description, tag: $tag, url: $url)';
+    return 'Item(id: $id, price: $price, description: $description, tag: $tag, image: $image)';
   }
 
   @override
@@ -54,7 +54,7 @@ class Item {
         other.price == price &&
         other.description == description &&
         other.tag == tag &&
-        other.url == url;
+        other.image == image;
   }
 
   @override
@@ -63,6 +63,6 @@ class Item {
         price.hashCode ^
         description.hashCode ^
         tag.hashCode ^
-        url.hashCode;
+        image.hashCode;
   }
 }

@@ -17,9 +17,16 @@ abstract class ItemStoreBase with Store {
   Future<void> listItems() async {
     try {
       var response = await _service.listItems();
+      print(response.body);
       if (response.statusCode == 200) {
         final List<dynamic> jsonResponse = json.decode(response.body);
-        jsonResponse.map((item) => items.add(item));
+        var listItem = jsonResponse.map((item) => Item(
+            id: item["id"],
+            price: item["price"],
+            description: item["description"],
+            tag: item["tag"],
+            image: item["image"]));
+        items.addAll(listItem);
       }
       print(items);
     } catch (e) {
