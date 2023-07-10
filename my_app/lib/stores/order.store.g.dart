@@ -25,6 +25,22 @@ mixin _$OrderStore on OrderStoreBase, Store {
     });
   }
 
+  late final _$cartItemsAtom =
+      Atom(name: 'OrderStoreBase.cartItems', context: context);
+
+  @override
+  ObservableList<Item> get cartItems {
+    _$cartItemsAtom.reportRead();
+    return super.cartItems;
+  }
+
+  @override
+  set cartItems(ObservableList<Item> value) {
+    _$cartItemsAtom.reportWrite(value, super.cartItems, () {
+      super.cartItems = value;
+    });
+  }
+
   late final _$listOrdersAsyncAction =
       AsyncAction('OrderStoreBase.listOrders', context: context);
 
@@ -37,15 +53,15 @@ mixin _$OrderStore on OrderStoreBase, Store {
       AsyncAction('OrderStoreBase.createOrder', context: context);
 
   @override
-  Future<void> createOrder(int userId, List<int> purchasedItemsIds) {
-    return _$createOrderAsyncAction
-        .run(() => super.createOrder(userId, purchasedItemsIds));
+  Future<void> createOrder(int userId) {
+    return _$createOrderAsyncAction.run(() => super.createOrder(userId));
   }
 
   @override
   String toString() {
     return '''
-orders: ${orders}
+orders: ${orders},
+cartItems: ${cartItems}
     ''';
   }
 }

@@ -17,7 +17,6 @@ abstract class ItemStoreBase with Store {
   Future<void> listItems() async {
     try {
       var response = await _service.listItems();
-      print(response.body);
       if (response.statusCode == 200) {
         final List<dynamic> jsonResponse = json.decode(response.body);
         var listItem = jsonResponse.map((item) => Item(
@@ -28,14 +27,8 @@ abstract class ItemStoreBase with Store {
             image: item["image"]));
         items.addAll(listItem);
       }
-      print(items);
     } catch (e) {
       rethrow;
     }
-  }
-
-  void updateItems(dynamic item) {
-    print("store");
-    print(item);
   }
 }

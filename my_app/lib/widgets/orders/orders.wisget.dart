@@ -13,10 +13,6 @@ class OrderItem extends StatefulWidget {
 }
 
 class OrderItemState extends State<OrderItem> {
-  void removeOrderFromOrders() {
-    Provider.of<Order>(context, listen: false).removeUserCart(widget.order);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,8 +22,8 @@ class OrderItemState extends State<OrderItem> {
         leading: Image.asset('logo-flamengo.png'),
         title: Text('Pedido 1'),
         subtitle: Text('Total: R\$587,90'),
-        trailing: IconButton(
-            icon: const Icon(Icons.delete), onPressed: removeOrderFromOrders),
+        // trailing: IconButton(
+        //     icon: const Icon(Icons.delete), onPressed: removeOrderFromOrders),
       ),
     );
   }
