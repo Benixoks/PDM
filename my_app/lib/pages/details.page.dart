@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/pages/cart.page.dart';
+import 'package:my_app/stores/order.store.dart';
 import 'package:provider/provider.dart';
 import '../models/item.model.dart';
-import '../models/cart.dart';
 
 class DetailsPage extends StatefulWidget {
   final Item item;
@@ -15,8 +15,10 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   void addToCart(Item item) {
-    final cart = Provider.of<Cart>(context, listen: false);
-    cart.addItemToCart(widget.item);
+    final orderStore = Provider.of<OrderStore>(context, listen: false);
+
+    orderStore.cartItems.add(item);
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -39,16 +41,44 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
       ),
     );
+
     print('Item adicionado ao carrinho: ${item.tag}');
   }
+  // void addToCart(Item item) {
+  //   final cart = Provider.of<Cart>(context, listen: false);
+  //   cart.addItemToCart(widget.item);
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) => AlertDialog(
+  //       title: const Text('Item adicionado com sucesso!'),
+  //       content: TextButton(
+  //         onPressed: () {
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //                 builder: (context) => const CartPage(
+  //                       cartItems: [],
+  //                     )),
+  //           );
+  //         },
+  //         style: TextButton.styleFrom(
+  //           foregroundColor: Colors.white,
+  //           backgroundColor: const Color.fromARGB(255, 189, 1, 1),
+  //         ),
+  //         child: const Text('Confira seu carrinho'),
+  //       ),
+  //     ),
+  //   );
+  //   print('Item adicionado ao carrinho: ${item.tag}');
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final uniqueTag = 'item.detail.${widget.item.id}';
+    // final uniqueTag = 'item.detail.${widget.item.id}';
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Center(child: Text('Detalhes do Item')),
+        title: const Center(child: Text('Detalhes do Item')),
       ),
       body: Center(
         child: Column(

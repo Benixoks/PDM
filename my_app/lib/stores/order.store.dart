@@ -15,12 +15,19 @@ abstract class OrderStoreBase with Store {
   @observable
   ObservableList<Order> orders = <Order>[].asObservable();
 
+  @observable
+  ObservableList<Item> cartItems = <Item>[].asObservable();
+
+  @action
+  void removeItemFromCart(Item item) {
+    cartItems.remove(item);
+  }
+
   @action
   Future<void> listOrders(int userId) async {
     try {
       var response = await _service.listOrders(userId);
 
-      print(response.body);
       if (response.statusCode == 200) {
         final List<dynamic> jsonResponse = json.decode(response.body);
         var listItem = jsonResponse.map((order) => Order(
@@ -37,7 +44,9 @@ abstract class OrderStoreBase with Store {
   }
 
   @action
-  Future<void> createOrder(int userId, List<int> purchasedItemsIds) async {
+  Future<void> createOrder(int userId) async {
+    var purchasedItemsIds = cartItems.map((item) => item.id).toList();
+
     try {
       await _service.createOrder(userId, purchasedItemsIds);
     } catch (e) {
