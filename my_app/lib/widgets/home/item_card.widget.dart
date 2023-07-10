@@ -5,20 +5,14 @@ import '../../common/hero.dart';
 import '../../pages/details.page.dart';
 
 class ItemCard extends StatelessWidget {
-  // Item item = Item(
-  //     id: 1,
-  //     price: 89,
-  //     description: "placeholder",
-  //     tag: "tag",
-  //     url: "placeholder");
-  Item item;
+  final Item item;
 
-  ItemCard({super.key, required this.item});
+  const ItemCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 25),
+      margin: const EdgeInsets.only(left: 25),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
       width: 280,
       child: GestureDetector(
@@ -44,8 +38,8 @@ class ItemCard extends StatelessWidget {
           child: Column(
             children: [
               Center(
-                  child: Image(
-                image: AssetImage(item.image),
+                  child: Image.network(
+                item.image,
                 width: double.infinity,
                 height: 230,
               )),

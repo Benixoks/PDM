@@ -2,10 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
 import 'package:my_app/pages/cart.page.dart';
-import 'package:my_app/pages/login.page.dart';
 import 'package:my_app/widgets/home/item_card.widget.dart';
 import 'package:provider/provider.dart';
-import '../models/cart.dart';
 import '../stores/item.store.dart';
 import '../widgets/common/bottom_bar.widget.dart';
 
@@ -21,9 +19,13 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchItens() async {
     final itemStore = Provider.of<ItemStore>(context, listen: false);
+    await itemStore.listItems();
 
-    itemStore.listItems();
-    setState(() {});
+    if (itemStore.items.isNotEmpty) {
+      setState(() {
+        itens = itemStore.items;
+      });
+    }
   }
 
   @override
@@ -35,37 +37,40 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final itemStore = Provider.of<ItemStore>(context, listen: false);
-    return Consumer<Cart>(
-      builder: (context, value, child) => Scaffold(
-        bottomNavigationBar: const BottomBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: min(4, itemStore.items.length),
-                  itemBuilder: (context, index) {
-                    Item item = value.getItemList()[index];
-                    return ItemCard(item: item);
-                  },
-                ),
+    return itens.isEmpty
+        ? const CircularProgressIndicator()
+        : Scaffold(
+            bottomNavigationBar: const BottomBar(),
+            body: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: min(9, itemStore.items.length),
+                      itemBuilder: (context, index) {
+                        Item item = itemStore.items[index];
+                        return ItemCard(item: item);
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          foregroundColor: Colors.white,
-          backgroundColor: const Color.fromARGB(255, 189, 1, 1),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CartPage(cartItems: [],)),
-            );
-          },
-          child: const Icon(Icons.shopping_cart),
-        ),
-      ),
-    );
+            ),
+            floatingActionButton: FloatingActionButton(
+              foregroundColor: Colors.white,
+              backgroundColor: const Color.fromARGB(255, 189, 1, 1),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CartPage(
+                            cartItems: [],
+                          )),
+                );
+              },
+              child: const Icon(Icons.shopping_cart),
+            ),
+          );
   }
 }

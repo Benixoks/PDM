@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import '../models/user.model.dart';
 
 class UserService {
-  String baseUrl = 'https://localhost:52741/api/user';
+  String baseUrl = 'https://localhost:7108/api/user';
   Map<String, String> baseHeaders = {
     'Content-Type': 'application/json',
     'accept': 'text/plain'

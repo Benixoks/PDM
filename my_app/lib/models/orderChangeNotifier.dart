@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
+import 'package:my_app/models/cart.dart';
 
-class Cart extends ChangeNotifier {
-//lista de itens para compra
-
+class Order extends ChangeNotifier {
   List<Item> itensShop = [
     Item(
         id: 1,
@@ -31,30 +30,29 @@ class Cart extends ChangeNotifier {
         image: 'lib/assets/images/camisa4.jpg'),
   ];
 
-//lista de itens do usuário no carrinho
-  List<Item> userCart = [];
+  List<Item> meusPedidos = [];
 
-//get lista de itens para venda
   List<Item> getItemList() {
     return itensShop;
   }
 
-//get cart
-  List<Item> getUserCart() {
-    return userCart;
+//get order
+  List<Item> getUserOrders() {
+    return meusPedidos;
   }
 
-//add itens no cart
-
-  void addItemToCart(Item itens) {
-    userCart.add(itens);
+//add itens no Meus Pedidos
+  int index = 0;
+  void addUserCart(userCart) {
+    meusPedidos.add(Cart() as Item);
+    index++;
     notifyListeners();
   }
 
-//remove itens do cart
+//remove itens do Meus Pedido
 
-  void removeItemFromCart(Item itens) {
-    userCart.remove(itens);
+  void removeUserCart(userCart) {
+    meusPedidos.remove(Cart() as Item);
     notifyListeners();
   }
 }
