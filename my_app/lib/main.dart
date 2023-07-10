@@ -32,10 +32,7 @@ class MyApp extends StatelessWidget {
             create: (context) => OrderStore(),
           ),
         ],
-        child: MultiProvider(providers: [
-          ChangeNotifierProvider(
-            create: (context) => Order(),
-          ),
+        child: MultiProvider(providers: [          
           ChangeNotifierProvider(
             create: (context) => Cart(),
             builder: (context, child) => MaterialApp(

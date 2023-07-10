@@ -16,9 +16,9 @@ class _LoginFormState extends State<LoginForm> {
   final _passwordController = TextEditingController();
 
   void onPressedLogin() async {
-    UserStore userStore = Provider.of<UserStore>(context, listen: false);
+    //UserStore userStore = Provider.of<UserStore>(context, listen: false);
 
-    await userStore.logIn(_emailController.text, _passwordController.text);
+    //await userStore.logIn(_emailController.text, _passwordController.text);
 
     if (context.mounted) Navigator.pushReplacementNamed(context, '/home');
   }
@@ -34,7 +34,7 @@ class _LoginFormState extends State<LoginForm> {
           inputDecoration: InputDecoration(
             labelStyle: const TextStyle(color: Colors.white),
             icon: const Icon(Icons.mail),
-            iconColor: Color.fromARGB(255, 189, 1, 1),
+            iconColor: const Color.fromARGB(255, 189, 1, 1),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide:
@@ -51,7 +51,7 @@ class _LoginFormState extends State<LoginForm> {
             labelStyle: const TextStyle(color: Colors.white),
             labelText: "Senha",
             icon: const Icon(Icons.key),
-            iconColor: Color.fromARGB(255, 189, 1, 1),
+            iconColor: const Color.fromARGB(255, 189, 1, 1),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide:

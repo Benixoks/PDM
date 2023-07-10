@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/models/item.model.dart';
-import 'package:my_app/models/orderChangeNotifier.dart';
+import 'package:my_app/models/order.model.dart';
 import 'package:provider/provider.dart';
 import 'package:my_app/models/cart.dart';
+import 'package:my_app/stores/order.store.dart';
+import '../../models/order.model.dart';
 
 class OrderItem extends StatefulWidget {
   Order order;
   OrderItem({super.key, required this.order});
+  
 
   @override
   State<OrderItem> createState() => OrderItemState();
 }
 
+    
+
+  
+  
 class OrderItemState extends State<OrderItem> {
   @override
   Widget build(BuildContext context) {
@@ -21,9 +28,8 @@ class OrderItemState extends State<OrderItem> {
       child: ListTile(
         leading: Image.asset('logo-flamengo.png'),
         title: Text('Pedido 1'),
-        subtitle: Text('Total: R\$587,90'),
-        // trailing: IconButton(
-        //     icon: const Icon(Icons.delete), onPressed: removeOrderFromOrders),
+        subtitle: Text('Total: R\$'),
+        trailing: IconButton(icon: const Icon(Icons.delete), onPressed: (){}),
       ),
     );
   }

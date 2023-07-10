@@ -3,7 +3,8 @@ import 'package:my_app/stores/order.store.dart';
 import 'package:my_app/widgets/orders/orders.wisget.dart';
 import 'package:provider/provider.dart';
 
-import '../models/orderChangeNotifier.dart';
+// import '../models/orderChangeNotifier.dart';
+import '../models/order.model.dart';
 import '../stores/user.store.dart';
 
 class OrderPage extends StatefulWidget {
@@ -49,7 +50,7 @@ class _OrderPageState extends State<OrderPage> {
                   child: ListView.builder(
                 itemCount: orderProvider.orders.length,
                 itemBuilder: (context, index) {
-                  Order orderIndividual = orderProvider.orders[index] as Order;
+                  Order orderIndividual = orderProvider.orders[index];
                   return OrderItem(order: orderIndividual);
                 },
               ))
